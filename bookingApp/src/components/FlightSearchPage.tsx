@@ -106,25 +106,34 @@ const FlightSearchPage: React.FC = () => {
   const renderFlights = () => {
     if (!searchResults) return null;
     if (searchResults.best_flights && searchResults.best_flights.length > 0) {
-      return searchResults.best_flights.map((flight: any, index: number) => (
-        <div key={index} className="border p-4 rounded shadow-sm mb-4">
-          <p>
-            <strong>Airline:</strong> {flight.airline || "N/A"}
-          </p>
-          <p>
-            <strong>Flight No:</strong> {flight.flight_number || "N/A"}
-          </p>
-          <p>
-            <strong>Duration:</strong> {flight.duration || "N/A"} minutes
-          </p>
-          <p>
-            <strong>Price:</strong> {flight.price || "N/A"}
-          </p>
-          <p>
-            <strong>Type:</strong> {flight.flightType || "N/A"}
-          </p>
-        </div>
-      ));
+      return searchResults.best_flights.map((route: any, index: number) => {
+        // Get the first flight from the nested flights array if available
+        const flightDetail = route.flights && route.flights[0];
+
+        return (
+          <div key={index} className="border p-4 rounded shadow-sm mb-4">
+            <p>
+              <strong>Airline:</strong> {flightDetail?.airline || "N/A"}
+            </p>
+            <p>
+              <strong>Flight No:</strong> {flightDetail?.flight_number || "N/A"}
+            </p>
+            <p>
+              <strong>Duration:</strong>{" "}
+              {flightDetail?.duration
+                ? `${flightDetail.duration} minutes`
+                : "N/A"}
+            </p>
+            <p>
+              <strong>Price:</strong>{" "}
+              {route.price !== undefined ? `$${route.price}` : "N/A"}
+            </p>
+            <p>
+              <strong>Type:</strong> {route.type || "N/A"}
+            </p>
+          </div>
+        );
+      });
     } else {
       return (
         <div className="mt-4">
