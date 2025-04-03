@@ -17,8 +17,8 @@
         {
           "flightNumber": "AI-BOM-DEL-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -26,8 +26,8 @@
         {
           "flightNumber": "6E-BOM-DEL-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -35,8 +35,8 @@
         {
           "flightNumber": "SG-BOM-DEL-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -44,8 +44,8 @@
         {
           "flightNumber": "VST-BOM-DEL-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -53,14 +53,14 @@
             {
               "origin": "BOM",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "DEL",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -73,8 +73,8 @@
         {
           "flightNumber": "AI-BOM-HYD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -82,8 +82,8 @@
         {
           "flightNumber": "6E-BOM-HYD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -91,8 +91,8 @@
         {
           "flightNumber": "SG-BOM-HYD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -100,8 +100,8 @@
         {
           "flightNumber": "VST-BOM-HYD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -109,14 +109,14 @@
             {
               "origin": "BOM",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "HYD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -129,8 +129,8 @@
         {
           "flightNumber": "AI-BOM-BLR-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -138,8 +138,8 @@
         {
           "flightNumber": "6E-BOM-BLR-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -147,8 +147,8 @@
         {
           "flightNumber": "SG-BOM-BLR-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -156,8 +156,8 @@
         {
           "flightNumber": "VST-BOM-BLR-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -165,14 +165,14 @@
             {
               "origin": "BOM",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BLR",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -185,8 +185,8 @@
         {
           "flightNumber": "AI-BOM-MAA-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -194,8 +194,8 @@
         {
           "flightNumber": "6E-BOM-MAA-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -203,8 +203,8 @@
         {
           "flightNumber": "SG-BOM-MAA-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -212,8 +212,8 @@
         {
           "flightNumber": "VST-BOM-MAA-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -221,14 +221,14 @@
             {
               "origin": "BOM",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "MAA",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -241,8 +241,8 @@
         {
           "flightNumber": "AI-BOM-CCU-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -250,8 +250,8 @@
         {
           "flightNumber": "6E-BOM-CCU-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -259,8 +259,8 @@
         {
           "flightNumber": "SG-BOM-CCU-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -268,8 +268,8 @@
         {
           "flightNumber": "VST-BOM-CCU-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -277,14 +277,14 @@
             {
               "origin": "BOM",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "CCU",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -297,8 +297,8 @@
         {
           "flightNumber": "AI-BOM-PNQ-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -306,8 +306,8 @@
         {
           "flightNumber": "6E-BOM-PNQ-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -315,8 +315,8 @@
         {
           "flightNumber": "SG-BOM-PNQ-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -324,8 +324,8 @@
         {
           "flightNumber": "VST-BOM-PNQ-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -333,14 +333,14 @@
             {
               "origin": "BOM",
               "destination": "AMD",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "AMD",
               "destination": "PNQ",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -353,8 +353,8 @@
         {
           "flightNumber": "AI-BOM-AMD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -362,8 +362,8 @@
         {
           "flightNumber": "6E-BOM-AMD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -371,8 +371,8 @@
         {
           "flightNumber": "SG-BOM-AMD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -380,8 +380,8 @@
         {
           "flightNumber": "VST-BOM-AMD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -389,14 +389,14 @@
             {
               "origin": "BOM",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "AMD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -409,8 +409,8 @@
         {
           "flightNumber": "AI-DEL-BOM-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -418,8 +418,8 @@
         {
           "flightNumber": "6E-DEL-BOM-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -427,8 +427,8 @@
         {
           "flightNumber": "SG-DEL-BOM-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -436,8 +436,8 @@
         {
           "flightNumber": "VST-DEL-BOM-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -445,14 +445,14 @@
             {
               "origin": "DEL",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -465,8 +465,8 @@
         {
           "flightNumber": "AI-DEL-HYD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -474,8 +474,8 @@
         {
           "flightNumber": "6E-DEL-HYD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -483,8 +483,8 @@
         {
           "flightNumber": "SG-DEL-HYD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -492,8 +492,8 @@
         {
           "flightNumber": "VST-DEL-HYD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -501,14 +501,14 @@
             {
               "origin": "DEL",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "HYD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -521,8 +521,8 @@
         {
           "flightNumber": "AI-DEL-BLR-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -530,8 +530,8 @@
         {
           "flightNumber": "6E-DEL-BLR-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -539,8 +539,8 @@
         {
           "flightNumber": "SG-DEL-BLR-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -548,8 +548,8 @@
         {
           "flightNumber": "VST-DEL-BLR-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -557,14 +557,14 @@
             {
               "origin": "DEL",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BLR",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -577,8 +577,8 @@
         {
           "flightNumber": "AI-DEL-MAA-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -586,8 +586,8 @@
         {
           "flightNumber": "6E-DEL-MAA-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -595,8 +595,8 @@
         {
           "flightNumber": "SG-DEL-MAA-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -604,8 +604,8 @@
         {
           "flightNumber": "VST-DEL-MAA-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -613,14 +613,14 @@
             {
               "origin": "DEL",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "MAA",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -633,8 +633,8 @@
         {
           "flightNumber": "AI-DEL-CCU-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -642,8 +642,8 @@
         {
           "flightNumber": "6E-DEL-CCU-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -651,8 +651,8 @@
         {
           "flightNumber": "SG-DEL-CCU-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -660,8 +660,8 @@
         {
           "flightNumber": "VST-DEL-CCU-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -669,14 +669,14 @@
             {
               "origin": "DEL",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "CCU",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -689,8 +689,8 @@
         {
           "flightNumber": "AI-DEL-PNQ-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -698,8 +698,8 @@
         {
           "flightNumber": "6E-DEL-PNQ-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -707,8 +707,8 @@
         {
           "flightNumber": "SG-DEL-PNQ-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -716,8 +716,8 @@
         {
           "flightNumber": "VST-DEL-PNQ-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -725,14 +725,14 @@
             {
               "origin": "DEL",
               "destination": "BOM",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "BOM",
               "destination": "PNQ",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -745,8 +745,8 @@
         {
           "flightNumber": "AI-DEL-AMD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -754,8 +754,8 @@
         {
           "flightNumber": "6E-DEL-AMD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -763,8 +763,8 @@
         {
           "flightNumber": "SG-DEL-AMD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -772,8 +772,8 @@
         {
           "flightNumber": "VST-DEL-AMD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -781,14 +781,14 @@
             {
               "origin": "DEL",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "AMD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -801,8 +801,8 @@
         {
           "flightNumber": "AI-HYD-BOM-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -810,8 +810,8 @@
         {
           "flightNumber": "6E-HYD-BOM-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -819,8 +819,8 @@
         {
           "flightNumber": "SG-HYD-BOM-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -828,8 +828,8 @@
         {
           "flightNumber": "VST-HYD-BOM-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -837,14 +837,14 @@
             {
               "origin": "HYD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -857,8 +857,8 @@
         {
           "flightNumber": "AI-HYD-DEL-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -866,8 +866,8 @@
         {
           "flightNumber": "6E-HYD-DEL-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -875,8 +875,8 @@
         {
           "flightNumber": "SG-HYD-DEL-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -884,8 +884,8 @@
         {
           "flightNumber": "VST-HYD-DEL-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -893,14 +893,14 @@
             {
               "origin": "HYD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "DEL",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -913,8 +913,8 @@
         {
           "flightNumber": "AI-HYD-BLR-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -922,8 +922,8 @@
         {
           "flightNumber": "6E-HYD-BLR-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -931,8 +931,8 @@
         {
           "flightNumber": "SG-HYD-BLR-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -940,8 +940,8 @@
         {
           "flightNumber": "VST-HYD-BLR-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -949,14 +949,14 @@
             {
               "origin": "HYD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BLR",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -969,8 +969,8 @@
         {
           "flightNumber": "AI-HYD-MAA-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -978,8 +978,8 @@
         {
           "flightNumber": "6E-HYD-MAA-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -987,8 +987,8 @@
         {
           "flightNumber": "SG-HYD-MAA-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -996,8 +996,8 @@
         {
           "flightNumber": "VST-HYD-MAA-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1005,14 +1005,14 @@
             {
               "origin": "HYD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "MAA",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1025,8 +1025,8 @@
         {
           "flightNumber": "AI-HYD-CCU-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1034,8 +1034,8 @@
         {
           "flightNumber": "6E-HYD-CCU-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1043,8 +1043,8 @@
         {
           "flightNumber": "SG-HYD-CCU-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1052,8 +1052,8 @@
         {
           "flightNumber": "VST-HYD-CCU-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1061,14 +1061,14 @@
             {
               "origin": "HYD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "CCU",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1081,8 +1081,8 @@
         {
           "flightNumber": "AI-HYD-PNQ-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1090,8 +1090,8 @@
         {
           "flightNumber": "6E-HYD-PNQ-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1099,8 +1099,8 @@
         {
           "flightNumber": "SG-HYD-PNQ-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1108,8 +1108,8 @@
         {
           "flightNumber": "VST-HYD-PNQ-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1117,14 +1117,14 @@
             {
               "origin": "HYD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "PNQ",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1137,8 +1137,8 @@
         {
           "flightNumber": "AI-HYD-AMD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1146,8 +1146,8 @@
         {
           "flightNumber": "6E-HYD-AMD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1155,8 +1155,8 @@
         {
           "flightNumber": "SG-HYD-AMD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1164,8 +1164,8 @@
         {
           "flightNumber": "VST-HYD-AMD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1173,14 +1173,14 @@
             {
               "origin": "HYD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "AMD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1193,8 +1193,8 @@
         {
           "flightNumber": "AI-BLR-BOM-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1202,8 +1202,8 @@
         {
           "flightNumber": "6E-BLR-BOM-200",
           "airline": "IndiGo",
-          "departure": "2025-03-15T07:30:00",
-          "arrival": "2025-03-15T09:30:00",
+          "departure_time": "2025-03-15T07:30:00",
+          "arrival_time": "2025-03-15T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1211,8 +1211,8 @@
         {
           "flightNumber": "SG-BLR-BOM-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1220,8 +1220,8 @@
         {
           "flightNumber": "VST-BLR-BOM-400",
           "airline": "Vistara",
-          "departure": "2025-03-15T10:00:00",
-          "arrival": "2025-03-15T13:00:00",
+          "departure_time": "2025-03-15T10:00:00",
+          "arrival_time": "2025-03-15T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1229,14 +1229,14 @@
             {
               "origin": "BLR",
               "destination": "PNQ",
-              "departure": "2025-03-15T10:00:00",
-              "arrival": "2025-03-15T11:00:00"
+              "departure_time": "2025-03-15T10:00:00",
+              "arrival_time": "2025-03-15T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-15T11:30:00",
-              "arrival": "2025-03-15T13:00:00"
+              "departure_time": "2025-03-15T11:30:00",
+              "arrival_time": "2025-03-15T13:00:00"
             }
           ]
         }
@@ -1249,8 +1249,8 @@
         {
           "flightNumber": "AI-BLR-DEL-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1258,8 +1258,8 @@
         {
           "flightNumber": "6E-BLR-DEL-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1267,8 +1267,8 @@
         {
           "flightNumber": "SG-BLR-DEL-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1276,8 +1276,8 @@
         {
           "flightNumber": "VST-BLR-DEL-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1285,14 +1285,14 @@
             {
               "origin": "BLR",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "DEL",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1305,8 +1305,8 @@
         {
           "flightNumber": "AI-BLR-HYD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1314,8 +1314,8 @@
         {
           "flightNumber": "6E-BLR-HYD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1323,8 +1323,8 @@
         {
           "flightNumber": "SG-BLR-HYD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1332,8 +1332,8 @@
         {
           "flightNumber": "VST-BLR-HYD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1341,14 +1341,14 @@
             {
               "origin": "BLR",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "HYD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1361,8 +1361,8 @@
         {
           "flightNumber": "AI-BLR-MAA-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1370,8 +1370,8 @@
         {
           "flightNumber": "6E-BLR-MAA-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1379,8 +1379,8 @@
         {
           "flightNumber": "SG-BLR-MAA-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1388,8 +1388,8 @@
         {
           "flightNumber": "VST-BLR-MAA-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1397,14 +1397,14 @@
             {
               "origin": "BLR",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "MAA",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1417,8 +1417,8 @@
         {
           "flightNumber": "AI-BLR-CCU-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1426,8 +1426,8 @@
         {
           "flightNumber": "6E-BLR-CCU-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1435,8 +1435,8 @@
         {
           "flightNumber": "SG-BLR-CCU-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1444,8 +1444,8 @@
         {
           "flightNumber": "VST-BLR-CCU-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1453,14 +1453,14 @@
             {
               "origin": "BLR",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "CCU",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1473,8 +1473,8 @@
         {
           "flightNumber": "AI-BLR-PNQ-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1482,8 +1482,8 @@
         {
           "flightNumber": "6E-BLR-PNQ-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1491,8 +1491,8 @@
         {
           "flightNumber": "SG-BLR-PNQ-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1500,8 +1500,8 @@
         {
           "flightNumber": "VST-BLR-PNQ-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1509,14 +1509,14 @@
             {
               "origin": "BLR",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "PNQ",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1529,8 +1529,8 @@
         {
           "flightNumber": "AI-BLR-AMD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1538,8 +1538,8 @@
         {
           "flightNumber": "6E-BLR-AMD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1547,8 +1547,8 @@
         {
           "flightNumber": "SG-BLR-AMD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1556,8 +1556,8 @@
         {
           "flightNumber": "VST-BLR-AMD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1565,14 +1565,14 @@
             {
               "origin": "BLR",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "AMD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1585,8 +1585,8 @@
         {
           "flightNumber": "AI-MAA-BOM-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1594,8 +1594,8 @@
         {
           "flightNumber": "6E-MAA-BOM-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1603,8 +1603,8 @@
         {
           "flightNumber": "SG-MAA-BOM-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1612,8 +1612,8 @@
         {
           "flightNumber": "VST-MAA-BOM-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1621,14 +1621,14 @@
             {
               "origin": "MAA",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1641,8 +1641,8 @@
         {
           "flightNumber": "AI-MAA-DEL-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1650,8 +1650,8 @@
         {
           "flightNumber": "6E-MAA-DEL-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1659,8 +1659,8 @@
         {
           "flightNumber": "SG-MAA-DEL-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1668,8 +1668,8 @@
         {
           "flightNumber": "VST-MAA-DEL-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1677,14 +1677,14 @@
             {
               "origin": "MAA",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "DEL",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1697,8 +1697,8 @@
         {
           "flightNumber": "AI-MAA-HYD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1706,8 +1706,8 @@
         {
           "flightNumber": "6E-MAA-HYD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1715,8 +1715,8 @@
         {
           "flightNumber": "SG-MAA-HYD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1724,8 +1724,8 @@
         {
           "flightNumber": "VST-MAA-HYD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1733,14 +1733,14 @@
             {
               "origin": "MAA",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "HYD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1753,8 +1753,8 @@
         {
           "flightNumber": "AI-MAA-BLR-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1762,8 +1762,8 @@
         {
           "flightNumber": "6E-MAA-BLR-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1771,8 +1771,8 @@
         {
           "flightNumber": "SG-MAA-BLR-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1780,8 +1780,8 @@
         {
           "flightNumber": "VST-MAA-BLR-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1789,14 +1789,14 @@
             {
               "origin": "MAA",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BLR",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1809,8 +1809,8 @@
         {
           "flightNumber": "AI-MAA-CCU-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1818,8 +1818,8 @@
         {
           "flightNumber": "6E-MAA-CCU-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1827,8 +1827,8 @@
         {
           "flightNumber": "SG-MAA-CCU-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1836,8 +1836,8 @@
         {
           "flightNumber": "VST-MAA-CCU-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1845,14 +1845,14 @@
             {
               "origin": "MAA",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "CCU",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1865,8 +1865,8 @@
         {
           "flightNumber": "AI-MAA-PNQ-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1874,8 +1874,8 @@
         {
           "flightNumber": "6E-MAA-PNQ-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1883,8 +1883,8 @@
         {
           "flightNumber": "SG-MAA-PNQ-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1892,8 +1892,8 @@
         {
           "flightNumber": "VST-MAA-PNQ-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1901,14 +1901,14 @@
             {
               "origin": "MAA",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "PNQ",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1921,8 +1921,8 @@
         {
           "flightNumber": "AI-MAA-AMD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1930,8 +1930,8 @@
         {
           "flightNumber": "6E-MAA-AMD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1939,8 +1939,8 @@
         {
           "flightNumber": "SG-MAA-AMD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -1948,8 +1948,8 @@
         {
           "flightNumber": "VST-MAA-AMD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -1957,14 +1957,14 @@
             {
               "origin": "MAA",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "AMD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -1977,8 +1977,8 @@
         {
           "flightNumber": "AI-CCU-BOM-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -1986,8 +1986,8 @@
         {
           "flightNumber": "6E-CCU-BOM-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -1995,8 +1995,8 @@
         {
           "flightNumber": "SG-CCU-BOM-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2004,8 +2004,8 @@
         {
           "flightNumber": "VST-CCU-BOM-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2013,14 +2013,14 @@
             {
               "origin": "CCU",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2033,8 +2033,8 @@
         {
           "flightNumber": "AI-CCU-DEL-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2042,8 +2042,8 @@
         {
           "flightNumber": "6E-CCU-DEL-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2051,8 +2051,8 @@
         {
           "flightNumber": "SG-CCU-DEL-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2060,8 +2060,8 @@
         {
           "flightNumber": "VST-CCU-DEL-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2069,14 +2069,14 @@
             {
               "origin": "CCU",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "DEL",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2089,8 +2089,8 @@
         {
           "flightNumber": "AI-CCU-HYD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2098,8 +2098,8 @@
         {
           "flightNumber": "6E-CCU-HYD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2107,8 +2107,8 @@
         {
           "flightNumber": "SG-CCU-HYD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2116,8 +2116,8 @@
         {
           "flightNumber": "VST-CCU-HYD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2125,14 +2125,14 @@
             {
               "origin": "CCU",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "HYD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2145,8 +2145,8 @@
         {
           "flightNumber": "AI-CCU-BLR-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2154,8 +2154,8 @@
         {
           "flightNumber": "6E-CCU-BLR-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2163,8 +2163,8 @@
         {
           "flightNumber": "SG-CCU-BLR-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2172,8 +2172,8 @@
         {
           "flightNumber": "VST-CCU-BLR-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2181,14 +2181,14 @@
             {
               "origin": "CCU",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BLR",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2201,8 +2201,8 @@
         {
           "flightNumber": "AI-CCU-MAA-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2210,8 +2210,8 @@
         {
           "flightNumber": "6E-CCU-MAA-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2219,8 +2219,8 @@
         {
           "flightNumber": "SG-CCU-MAA-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2228,8 +2228,8 @@
         {
           "flightNumber": "VST-CCU-MAA-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2237,14 +2237,14 @@
             {
               "origin": "CCU",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "MAA",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2257,8 +2257,8 @@
         {
           "flightNumber": "AI-CCU-PNQ-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2266,8 +2266,8 @@
         {
           "flightNumber": "6E-CCU-PNQ-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2275,8 +2275,8 @@
         {
           "flightNumber": "SG-CCU-PNQ-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2284,8 +2284,8 @@
         {
           "flightNumber": "VST-CCU-PNQ-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2293,14 +2293,14 @@
             {
               "origin": "CCU",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "PNQ",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2313,8 +2313,8 @@
         {
           "flightNumber": "AI-PNQ-BOM-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2322,8 +2322,8 @@
         {
           "flightNumber": "6E-PNQ-BOM-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2331,8 +2331,8 @@
         {
           "flightNumber": "SG-PNQ-BOM-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2340,8 +2340,8 @@
         {
           "flightNumber": "VST-PNQ-BOM-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2349,14 +2349,14 @@
             {
               "origin": "PNQ",
               "destination": "AMD",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "AMD",
               "destination": "BOM",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2369,8 +2369,8 @@
         {
           "flightNumber": "AI-PNQ-DEL-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2378,8 +2378,8 @@
         {
           "flightNumber": "6E-PNQ-DEL-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2387,8 +2387,8 @@
         {
           "flightNumber": "SG-PNQ-DEL-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2396,8 +2396,8 @@
         {
           "flightNumber": "VST-PNQ-DEL-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2405,14 +2405,14 @@
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "BOM",
               "destination": "DEL",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2425,8 +2425,8 @@
         {
           "flightNumber": "AI-PNQ-HYD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2434,8 +2434,8 @@
         {
           "flightNumber": "6E-PNQ-HYD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2443,8 +2443,8 @@
         {
           "flightNumber": "SG-PNQ-HYD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2452,8 +2452,8 @@
         {
           "flightNumber": "VST-PNQ-HYD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2461,14 +2461,14 @@
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "BOM",
               "destination": "HYD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2481,8 +2481,8 @@
         {
           "flightNumber": "AI-PNQ-BLR-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2490,8 +2490,8 @@
         {
           "flightNumber": "6E-PNQ-BLR-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2499,8 +2499,8 @@
         {
           "flightNumber": "SG-PNQ-BLR-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2508,8 +2508,8 @@
         {
           "flightNumber": "VST-PNQ-BLR-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2517,14 +2517,14 @@
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "BOM",
               "destination": "BLR",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2537,8 +2537,8 @@
         {
           "flightNumber": "AI-PNQ-AMD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2546,8 +2546,8 @@
         {
           "flightNumber": "6E-PNQ-AMD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2555,8 +2555,8 @@
         {
           "flightNumber": "SG-PNQ-AMD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2564,8 +2564,8 @@
         {
           "flightNumber": "VST-PNQ-AMD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2573,14 +2573,14 @@
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "BOM",
               "destination": "AMD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2593,8 +2593,8 @@
         {
           "flightNumber": "AI-AMD-BOM-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2602,8 +2602,8 @@
         {
           "flightNumber": "6E-AMD-BOM-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2611,8 +2611,8 @@
         {
           "flightNumber": "SG-AMD-BOM-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2620,8 +2620,8 @@
         {
           "flightNumber": "VST-AMD-BOM-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2629,14 +2629,14 @@
             {
               "origin": "AMD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BOM",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2649,8 +2649,8 @@
         {
           "flightNumber": "AI-AMD-DEL-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2658,8 +2658,8 @@
         {
           "flightNumber": "6E-AMD-DEL-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2667,8 +2667,8 @@
         {
           "flightNumber": "SG-AMD-DEL-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2676,8 +2676,8 @@
         {
           "flightNumber": "VST-AMD-DEL-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2685,14 +2685,14 @@
             {
               "origin": "AMD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "DEL",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2705,8 +2705,8 @@
         {
           "flightNumber": "AI-AMD-HYD-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2714,8 +2714,8 @@
         {
           "flightNumber": "6E-AMD-HYD-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2723,8 +2723,8 @@
         {
           "flightNumber": "SG-AMD-HYD-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2732,8 +2732,8 @@
         {
           "flightNumber": "VST-AMD-HYD-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2741,14 +2741,14 @@
             {
               "origin": "AMD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "HYD",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2761,8 +2761,8 @@
         {
           "flightNumber": "AI-AMD-BLR-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2770,8 +2770,8 @@
         {
           "flightNumber": "6E-AMD-BLR-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2779,8 +2779,8 @@
         {
           "flightNumber": "SG-AMD-BLR-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2788,8 +2788,8 @@
         {
           "flightNumber": "VST-AMD-BLR-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2797,14 +2797,14 @@
             {
               "origin": "AMD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "BLR",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2817,8 +2817,8 @@
         {
           "flightNumber": "AI-AMD-MAA-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2826,8 +2826,8 @@
         {
           "flightNumber": "6E-AMD-MAA-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2835,8 +2835,8 @@
         {
           "flightNumber": "SG-AMD-MAA-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2844,8 +2844,8 @@
         {
           "flightNumber": "VST-AMD-MAA-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2853,14 +2853,14 @@
             {
               "origin": "AMD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "MAA",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2873,8 +2873,8 @@
         {
           "flightNumber": "AI-AMD-CCU-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2882,8 +2882,8 @@
         {
           "flightNumber": "6E-AMD-CCU-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2891,8 +2891,8 @@
         {
           "flightNumber": "SG-AMD-CCU-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2900,8 +2900,8 @@
         {
           "flightNumber": "VST-AMD-CCU-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2909,14 +2909,14 @@
             {
               "origin": "AMD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "CCU",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }
@@ -2929,8 +2929,8 @@
         {
           "flightNumber": "AI-AMD-PNQ-100",
           "airline": "Air India",
-          "departure": "2025-03-14T06:00:00",
-          "arrival": "2025-03-14T08:00:00",
+          "departure_time": "2025-03-14T06:00:00",
+          "arrival_time": "2025-03-14T08:00:00",
           "duration": "2h",
           "price": 5000,
           "flightType": "direct"
@@ -2938,8 +2938,8 @@
         {
           "flightNumber": "6E-AMD-PNQ-200",
           "airline": "IndiGo",
-          "departure": "2025-03-14T07:30:00",
-          "arrival": "2025-03-14T09:30:00",
+          "departure_time": "2025-03-14T07:30:00",
+          "arrival_time": "2025-03-14T09:30:00",
           "duration": "2h",
           "price": 4800,
           "flightType": "direct"
@@ -2947,8 +2947,8 @@
         {
           "flightNumber": "SG-AMD-PNQ-300",
           "airline": "SpiceJet",
-          "departure": "2025-03-14T09:00:00",
-          "arrival": "2025-03-14T11:00:00",
+          "departure_time": "2025-03-14T09:00:00",
+          "arrival_time": "2025-03-14T11:00:00",
           "duration": "2h",
           "price": 4700,
           "flightType": "direct"
@@ -2956,8 +2956,8 @@
         {
           "flightNumber": "VST-AMD-PNQ-400",
           "airline": "Vistara",
-          "departure": "2025-03-14T10:00:00",
-          "arrival": "2025-03-14T13:00:00",
+          "departure_time": "2025-03-14T10:00:00",
+          "arrival_time": "2025-03-14T13:00:00",
           "duration": "3h",
           "price": 5200,
           "flightType": "connecting",
@@ -2965,14 +2965,14 @@
             {
               "origin": "AMD",
               "destination": "PNQ",
-              "departure": "2025-03-14T10:00:00",
-              "arrival": "2025-03-14T11:00:00"
+              "departure_time": "2025-03-14T10:00:00",
+              "arrival_time": "2025-03-14T11:00:00"
             },
             {
               "origin": "PNQ",
               "destination": "PNQ",
-              "departure": "2025-03-14T11:30:00",
-              "arrival": "2025-03-14T13:00:00"
+              "departure_time": "2025-03-14T11:30:00",
+              "arrival_time": "2025-03-14T13:00:00"
             }
           ]
         }

@@ -2,7 +2,17 @@
 
 import axios from "axios";
 
-const SERPAPI_BASE_URL = "https://serpapi.com/search.json";
+//change
+
+//const SERPAPI_BASE_URL = "https://serpapi.com/search.json";
+
+// const SERPAPI_BASE_URL =
+//   "https://corsproxy.io/?https://serpapi.com/search.json";
+// Or another CORS proxy like
+const SERPAPI_BASE_URL =
+  "https://api.allorigins.win/raw?url=" +
+  encodeURIComponent("https://serpapi.com/search.json");
+
 const API_KEY =
   "e5f96669e31c03158152d0d60a7b61c7bf18b745b8f08998795e506894b5976b";
 
@@ -12,7 +22,7 @@ const USE_MOCK_DATA = false; // Toggle this to switch between mock and real API
 const fetchMockData = async () => {
   try {
     // This assumes db.json is in the public folder of your React app
-    const response = await fetch("/db.json");
+    const response = await fetch("/db2.json");
     if (!response.ok) {
       throw new Error("Failed to fetch mock data");
     }
@@ -40,11 +50,31 @@ export const getSearchResults = async (
 
       // Find the route that matches departure and arrival
       const matchingRoute = mockData.routes.find(
-        (route) =>
+        (route: any) =>
           route.origin === departureId && route.destination === arrivalId
       );
 
-      // Format the response to match what your UI expects
+      // Map the nested flight data into a flat best_flights array.
+      // For each route flight object, we iterate over its nested "flights" array.
+      const best_flights = matchingRoute
+        ? matchingRoute.flights.flatMap((routeFlight: any) =>
+            routeFlight.flights.map((flight: any) => ({
+              airline: flight.airline,
+              flight_number: flight.flight_number, // note underscore as in db2.json
+              departure_time: flight.departure_airport?.time,
+              arrival_time: flight.arrival_airport?.time,
+              duration: flight.duration,
+              // Use the route-level price; adjust as needed if flight-specific prices exist
+              price: `${currency === "USD" ? "$" : "₹"}${routeFlight.price}`,
+              // Use the route-level type as flight type
+              flightType: routeFlight.type || matchingRoute.type,
+              // If stops info is available in flight.stops, use it; otherwise default to 0
+              stops: flight.stops ? flight.stops.length : 0,
+            }))
+          )
+        : [];
+
+      // Format the response to mimic SerpAPI's structure
       const formattedResponse = {
         search_metadata: {
           status: "Success",
@@ -58,20 +88,7 @@ export const getSearchResults = async (
           return_date: returnDate,
           currency: currency,
         },
-        // Map your flight data to match SerpAPI structure
-        best_flights: matchingRoute
-          ? matchingRoute.flights.map((flight) => ({
-              airline: flight.airline,
-              flight_number: flight.flightNumber,
-              departure: flight.departure,
-              arrival: flight.arrival,
-              duration: flight.duration,
-              price: `${currency === "USD" ? "$" : "₹"}${flight.price}`,
-              flightType: flight.flightType,
-              stops:
-                flight.flightType === "direct" ? 0 : flight.stops?.length || 1,
-            }))
-          : [],
+        best_flights,
         cities: mockData.cities,
       };
 
@@ -82,20 +99,16 @@ export const getSearchResults = async (
       throw error;
     }
   } else {
-    // Use the real API
     try {
-      const response = await axios.get(SERPAPI_BASE_URL, {
-        params: {
-          engine: "google_flights",
-          departure_id: departureId,
-          arrival_id: arrivalId,
-          outbound_date: outboundDate,
-          return_date: returnDate,
-          currency,
-          hl,
-          api_key: API_KEY,
-        },
-      });
+      // Build the complete URL with parameters
+      const serpApiUrl = `https://serpapi.com/search.json?engine=google_flights&departure_id=${departureId}&arrival_id=${arrivalId}&outbound_date=${outboundDate}&return_date=${returnDate}&currency=${currency}&hl=${hl}&api_key=${API_KEY}`;
+
+      // Use the proxy with the fully formed URL
+      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
+        serpApiUrl
+      )}`;
+
+      const response = await axios.get(proxyUrl);
       console.log("API Response:", response.data);
       return response.data;
     } catch (error) {

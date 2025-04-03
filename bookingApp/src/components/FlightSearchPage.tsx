@@ -1,9 +1,8 @@
-//FlightSearchPage.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TbArrowsExchange2 } from "react-icons/tb";
-import { useSearchResults } from "../api/useSearchResults";
 import { IoSearch } from "react-icons/io5";
 import dayjs from "dayjs";
+import { useSearchResults } from "../api/useSearchResults";
 
 interface City {
   code: string;
@@ -30,18 +29,15 @@ const airports: City[] = [
 ];
 
 const FlightSearchPage: React.FC = () => {
+  // State for flight search parameters
   const [selectedOption, setSelectedOption] = useState("roundTrip");
   const [departureId, setDepartureId] = useState("");
   const [arrivalId, setArrivalId] = useState("");
   const [departDate, setDepartDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  const [formattedDepartDate, setFormattedDepartDate] = useState("");
-  const [formattedReturnDate, setFormattedReturnDate] = useState("");
   const [travellers, setTravellers] = useState("");
   const [currency, setCurrency] = useState("USD");
   const [language, setLanguage] = useState("en");
-
-  // Search trigger state
   const [searchTriggered, setSearchTriggered] = useState(false);
 
   const { searchResults, isLoading, error, refetch } = useSearchResults(
@@ -53,8 +49,7 @@ const FlightSearchPage: React.FC = () => {
     language
   );
 
-  // Debug logging
-  React.useEffect(() => {
+  useEffect(() => {
     if (searchResults) {
       console.log("Search Results:", searchResults);
     }
@@ -63,6 +58,7 @@ const FlightSearchPage: React.FC = () => {
     }
   }, [searchResults, error]);
 
+  // Handlers for input changes
   const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(e.target.value);
   };
@@ -70,15 +66,11 @@ const FlightSearchPage: React.FC = () => {
   const handleDepartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawDate = e.target.value;
     setDepartDate(rawDate);
-    const formatted = dayjs(rawDate).format("D MMMM, ddd");
-    setFormattedDepartDate(formatted);
   };
 
   const handleReturnDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawDate = e.target.value;
     setReturnDate(rawDate);
-    const formatted = dayjs(rawDate).format("D MMM, ddd ");
-    setFormattedReturnDate(formatted);
   };
 
   const handleTravellersChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,214 +78,218 @@ const FlightSearchPage: React.FC = () => {
   };
 
   const handleSearch = () => {
+    if (
+      selectedOption === "roundTrip" &&
+      dayjs(returnDate).isBefore(dayjs(departDate))
+    ) {
+      alert("Return date must be after the departure date");
+      return;
+    }
     console.log("Search triggered with params:", {
-      departureId,
-      arrivalId,
-      departDate,
-      returnDate: selectedOption === "roundTrip" ? returnDate : "",
+      departure_id: departureId,
+      arrival_id: arrivalId,
+      outbound_date: departDate,
+      return_date: selectedOption === "roundTrip" ? returnDate : "",
+      currency,
+      hl: language,
     });
     setSearchTriggered(true);
     refetch();
   };
-
   const swapLocations = () => {
-    const tempDeparture = departureId;
+    const temp = departureId;
     setDepartureId(arrivalId);
-    setArrivalId(tempDeparture);
+    setArrivalId(temp);
   };
 
-  // Helper function to check data structure and render flights
+  // Render flight search results based on the API response
   const renderFlights = () => {
     if (!searchResults) return null;
-
-    console.log("Rendering flights with data structure:", searchResults);
-
-    // Check different possible data structures that SerpAPI might return
-    if (searchResults.flights && searchResults.flights.length > 0) {
-      return searchResults.flights.map((flight: any, index: number) => (
-        <div key={index} className="border p-4 rounded shadow-sm mb-4">
-          <p>Airline: {flight.airline || "N/A"}</p>
-          <p>Departure: {flight.departure_time || "N/A"}</p>
-          <p>Arrival: {flight.arrival_time || "N/A"}</p>
-          <p>Price: {flight.price || "N/A"}</p>
-          <p>Type: {flight.flightType || "N/A"}</p>
-        </div>
-      ));
-    } else if (
-      searchResults.best_flights &&
-      searchResults.best_flights.length > 0
-    ) {
+    if (searchResults.best_flights && searchResults.best_flights.length > 0) {
       return searchResults.best_flights.map((flight: any, index: number) => (
         <div key={index} className="border p-4 rounded shadow-sm mb-4">
           <p>
-            Airline: {flight.airline || flight.flight_details?.airline || "N/A"}
+            <strong>Airline:</strong> {flight.airline || "N/A"}
           </p>
-          <p>Duration: {flight.duration || "N/A"}</p>
-          <p>Price: {flight.price || "N/A"}</p>
-          {flight.departure && <p>Departure: {flight.departure}</p>}
-          {flight.arrival && <p>Arrival: {flight.arrival}</p>}
-          <p>Type: {flight.flightType || "N/A"}</p>
+          <p>
+            <strong>Flight No:</strong> {flight.flight_number || "N/A"}
+          </p>
+          <p>
+            <strong>Duration:</strong> {flight.duration || "N/A"} minutes
+          </p>
+          <p>
+            <strong>Price:</strong> {flight.price || "N/A"}
+          </p>
+          <p>
+            <strong>Type:</strong> {flight.flightType || "N/A"}
+          </p>
         </div>
       ));
     } else {
-      // Display raw data if structure is unexpected
       return (
         <div className="mt-4">
-          <p>Data structure received:</p>
-          <pre className="bg-gray-100 p-4 rounded text-xs overflow-auto max-h-60">
-            {JSON.stringify(searchResults, null, 2)}
-          </pre>
+          <p>No flights found for your search criteria.</p>
         </div>
       );
     }
   };
 
   return (
-    <>
-      <div className="h-screen mt-[5vh] flex flex-col items-center justify-center">
-        <div className="w-[88vw] lg:w-[75vw] h-auto border rounded border-black flex flex-col items-start p-4">
-          <div className="row1">
-            <label>
-              <input
-                type="radio"
-                name="flightOption"
-                value="oneWay"
-                checked={selectedOption === "oneWay"}
-                onChange={handleOptionChange}
-                className="mr-2"
-              />
-              <p className="inline-block mr-2">One Way</p>
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="flightOption"
-                value="roundTrip"
-                checked={selectedOption === "roundTrip"}
-                onChange={handleOptionChange}
-                className="mr-2"
-              />
-              Round Trip
-            </label>
+    <div className="h-screen mt-[5vh] flex flex-col items-center justify-center">
+      <div className="w-[88vw] lg:w-[75vw] border rounded border-black flex flex-col items-start p-4">
+        {/* Flight Option Selection */}
+        <div className="row1 mb-4">
+          <label className="mr-4">
+            <input
+              type="radio"
+              name="flightOption"
+              value="oneWay"
+              checked={selectedOption === "oneWay"}
+              onChange={handleOptionChange}
+              className="mr-2"
+            />
+            One Way
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="flightOption"
+              value="roundTrip"
+              checked={selectedOption === "roundTrip"}
+              onChange={handleOptionChange}
+              className="mr-2"
+            />
+            Round Trip
+          </label>
+        </div>
+
+        {/* Search Fields */}
+        <div className="row2 mt-4 flex flex-wrap gap-4">
+          {/* Departure Airport */}
+          <div className="flex items-center border border-gray-300 p-2">
+            <select
+              className="bg-transparent outline-none"
+              value={departureId}
+              onChange={(e) => setDepartureId(e.target.value)}
+            >
+              <option value="">From (Select Airport)</option>
+              {airports.map((city) => (
+                <option key={city.code} value={city.code}>
+                  {city.name} ({city.code})
+                </option>
+              ))}
+            </select>
           </div>
-          <div className="row2 mt-10 flex flex-wrap">
-            {/* Departure Dropdown */}
-            <div className="flex mb-4 md:mb-0">
-              <div className="border border-[#E4E4E4] flex items-center h-10 mr-1">
-                <select
-                  className="flex-grow bg-transparent outline-none w-[14vw] pl-2"
-                  value={departureId}
-                  onChange={(e) => setDepartureId(e.target.value)}
-                >
-                  <option value="">From (Select Airport)</option>
-                  {airports.map((city) => (
-                    <option key={city.code} value={city.code}>
-                      {city.name} ({city.code})
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div
-                className="flex items-center text-xl cursor-pointer z-4 border-x border-[#888484] rounded-full absolute ml-[13.5%] lg:ml-[13.75%] mt-2 bg-white text-[#212121]"
-                onClick={swapLocations}
-              >
-                <TbArrowsExchange2 />
-              </div>
-              {/* Arrival Dropdown */}
-              <div className="border border-[#E4E4E4] flex items-center h-10 mr-4">
-                <select
-                  className="flex-grow bg-transparent outline-none w-[14vw] pl-3"
-                  value={arrivalId}
-                  onChange={(e) => setArrivalId(e.target.value)}
-                >
-                  <option value="">To (Select Airport)</option>
-                  {airports.map((city) => (
-                    <option key={city.code} value={city.code}>
-                      {city.name} ({city.code})
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            <div className="border border-[#E4E4E4] flex items-center h-10 mr-4 mb-4 md:mb-0">
+
+          {/* Swap Button */}
+          <button
+            onClick={swapLocations}
+            className="p-2 bg-gray-200 rounded flex items-center"
+          >
+            <TbArrowsExchange2 size={20} />
+          </button>
+
+          {/* Arrival Airport */}
+          <div className="flex items-center border border-gray-300 p-2">
+            <select
+              className="bg-transparent outline-none"
+              value={arrivalId}
+              onChange={(e) => setArrivalId(e.target.value)}
+            >
+              <option value="">To (Select Airport)</option>
+              {airports.map((city) => (
+                <option key={city.code} value={city.code}>
+                  {city.name} ({city.code})
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-4 mt-4">
+          {/* Depart Date */}
+          <div className="border border-gray-300 p-2">
+            <input
+              type="date"
+              className="outline-none"
+              placeholder="Depart On"
+              onChange={handleDepartDateChange}
+              required
+              min={dayjs().format("YYYY-MM-DD")}
+            />
+          </div>
+          {/* Return Date (if Round Trip) */}
+          {selectedOption === "roundTrip" && (
+            <div className="border border-gray-300 p-2">
               <input
-                className="flex-grow bg-transparent outline-none w-[10vw] pl-2"
-                placeholder="Depart On"
                 type="date"
-                onChange={handleDepartDateChange}
+                className="outline-none"
+                placeholder="Return On"
+                onChange={handleReturnDateChange}
+                required
+                min={departDate || dayjs().format("YYYY-MM-DD")}
               />
-            </div>
-            {selectedOption === "roundTrip" && (
-              <div className="border border-[#E4E4E4] flex items-center h-10 mr-4 mb-4 md:mb-0">
-                <input
-                  className="flex-grow bg-transparent outline-none w-[10vw] pl-2"
-                  placeholder="Return On"
-                  type="date"
-                  onChange={handleReturnDateChange}
-                />
-              </div>
-            )}
-            <div className="border border-[#E4E4E4] flex items-center h-10 mr-4 mb-4 md:mb-0">
-              <input
-                className="flex-grow bg-transparent outline-none w-[14vw] pl-2"
-                placeholder="Travellers"
-                value={travellers}
-                onChange={handleTravellersChange}
-              />
-            </div>
-            <div className="flex px-2">
-              <button
-                className="bg-[#2874f0] text-white border rounded-sm px-4 flex items-center"
-                onClick={handleSearch}
-                disabled={
-                  isLoading ||
-                  !departureId ||
-                  !arrivalId ||
-                  !departDate ||
-                  (selectedOption === "roundTrip" && !returnDate)
-                }
-              >
-                <IoSearch /> &nbsp; {isLoading ? "Searching..." : "Search"}
-              </button>
-            </div>
-          </div>
-
-          {/* Results section with enhanced debugging */}
-          {searchTriggered && (
-            <div className="mt-8 w-full">
-              {isLoading && (
-                <p className="text-center">Loading search results...</p>
-              )}
-
-              {error && (
-                <div className="text-red-500 p-4 border border-red-300 rounded bg-red-50">
-                  <h3 className="font-bold">Error loading search results:</h3>
-                  <p>{(error as Error).message}</p>
-                  <p className="mt-2 text-sm">
-                    Make sure your API key is valid and the airport codes are
-                    correct.
-                  </p>
-                </div>
-              )}
-
-              {searchResults && !isLoading && (
-                <div className="mt-4">
-                  <h2 className="text-xl font-semibold mb-4">
-                    Flight Results for {departureId} to {arrivalId}
-                  </h2>
-
-                  {renderFlights() || (
-                    <p className="text-center p-4 border rounded">
-                      No flights found for your search criteria
-                    </p>
-                  )}
-                </div>
-              )}
             </div>
           )}
+          {/* Travellers */}
+          <div className="border border-gray-300 p-2">
+            <input
+              type="number"
+              className="outline-none"
+              placeholder="Travellers"
+              value={travellers}
+              onChange={handleTravellersChange}
+            />
+          </div>
         </div>
+
+        {/* Search Button */}
+        <div className="mt-4">
+          <button
+            onClick={handleSearch}
+            className="p-2 bg-blue-500 text-white flex items-center rounded"
+            disabled={
+              isLoading ||
+              !departureId ||
+              !arrivalId ||
+              !departDate ||
+              (selectedOption === "roundTrip" && !returnDate)
+            }
+          >
+            <IoSearch className="mr-1" size={20} />{" "}
+            {isLoading ? "Searching..." : "Search"}
+          </button>
+        </div>
+
+        {/* Results Section */}
+        {searchTriggered && (
+          <div className="mt-8 w-full">
+            {isLoading && (
+              <p className="text-center">Loading search results...</p>
+            )}
+            {error && (
+              <div className="text-red-500 p-4 border border-red-300 rounded bg-red-50">
+                <h3 className="font-bold">Error loading search results:</h3>
+                <p>{(error as Error).message}</p>
+              </div>
+            )}
+            {searchResults && !isLoading && (
+              <div className="mt-4">
+                <h2 className="text-xl font-semibold mb-4">
+                  Flight Results for {departureId} to {arrivalId} on{" "}
+                  {dayjs(departDate).format("MMM D, YYYY")}
+                </h2>
+                {renderFlights() || (
+                  <p className="text-center p-4 border rounded">
+                    No flights found for your search criteria.
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
