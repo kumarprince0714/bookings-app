@@ -1,0 +1,106 @@
+//useSearchResultsService.ts
+
+import axios from "axios";
+
+const SERPAPI_BASE_URL = "https://serpapi.com/search.json";
+const API_KEY =
+  "e5f96669e31c03158152d0d60a7b61c7bf18b745b8f08998795e506894b5976b";
+
+// Function to fetch the db.json file
+const USE_MOCK_DATA = false; // Toggle this to switch between mock and real API
+
+const fetchMockData = async () => {
+  try {
+    // This assumes db.json is in the public folder of your React app
+    const response = await fetch("/db.json");
+    if (!response.ok) {
+      throw new Error("Failed to fetch mock data");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error loading mock data:", error);
+    throw error;
+  }
+};
+
+export const getSearchResults = async (
+  departureId: string,
+  arrivalId: string,
+  outboundDate: string,
+  returnDate: string,
+  currency: string = "USD",
+  hl: string = "en"
+) => {
+  if (USE_MOCK_DATA) {
+    try {
+      console.log("Using mock data from db.json instead of remote API");
+
+      // Load the mock data from db.json
+      const mockData = await fetchMockData();
+
+      // Find the route that matches departure and arrival
+      const matchingRoute = mockData.routes.find(
+        (route) =>
+          route.origin === departureId && route.destination === arrivalId
+      );
+
+      // Format the response to match what your UI expects
+      const formattedResponse = {
+        search_metadata: {
+          status: "Success",
+          created_at: new Date().toISOString(),
+          id: "mock-search-" + Math.random().toString(36).substring(2, 9),
+        },
+        search_parameters: {
+          departure_id: departureId,
+          arrival_id: arrivalId,
+          outbound_date: outboundDate,
+          return_date: returnDate,
+          currency: currency,
+        },
+        // Map your flight data to match SerpAPI structure
+        best_flights: matchingRoute
+          ? matchingRoute.flights.map((flight) => ({
+              airline: flight.airline,
+              flight_number: flight.flightNumber,
+              departure: flight.departure,
+              arrival: flight.arrival,
+              duration: flight.duration,
+              price: `${currency === "USD" ? "$" : "₹"}${flight.price}`,
+              flightType: flight.flightType,
+              stops:
+                flight.flightType === "direct" ? 0 : flight.stops?.length || 1,
+            }))
+          : [],
+        cities: mockData.cities,
+      };
+
+      console.log("Mock API Response:", formattedResponse);
+      return formattedResponse;
+    } catch (error) {
+      console.log("Error using mock flight data:", error);
+      throw error;
+    }
+  } else {
+    // Use the real API
+    try {
+      const response = await axios.get(SERPAPI_BASE_URL, {
+        params: {
+          engine: "google_flights",
+          departure_id: departureId,
+          arrival_id: arrivalId,
+          outbound_date: outboundDate,
+          return_date: returnDate,
+          currency,
+          hl,
+          api_key: API_KEY,
+        },
+      });
+      console.log("API Response:", response.data);
+      return response.data;
+    } catch (error) {
+      console.log("Error fetching flight data:", error);
+      throw error;
+    }
+  }
+};
