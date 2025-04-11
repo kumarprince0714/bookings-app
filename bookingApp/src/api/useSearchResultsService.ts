@@ -17,7 +17,7 @@ const API_KEY =
   "e5f96669e31c03158152d0d60a7b61c7bf18b745b8f08998795e506894b5976b";
 
 // Function to fetch the db.json file
-const USE_MOCK_DATA = false; // Toggle this to switch between mock and real API
+const USE_MOCK_DATA = true; // Toggle this to switch between mock and real API
 
 const fetchMockData = async () => {
   try {
@@ -41,6 +41,7 @@ export const getSearchResults = async (
   currency: string = "USD",
   hl: string = "en"
 ) => {
+  const flightType = returnDate ? "1" : 2;
   if (USE_MOCK_DATA) {
     try {
       console.log("Using mock data from db.json instead of remote API");
@@ -101,7 +102,9 @@ export const getSearchResults = async (
   } else {
     try {
       // Build the complete URL with parameters
-      const serpApiUrl = `https://serpapi.com/search.json?engine=google_flights&departure_id=${departureId}&arrival_id=${arrivalId}&outbound_date=${outboundDate}&return_date=${returnDate}&currency=${currency}&hl=${hl}&api_key=${API_KEY}`;
+      const serpApiUrl = `https://serpapi.com/search.json?engine=google_flights&departure_id=${departureId}&arrival_id=${arrivalId}&outbound_date=${outboundDate}&type=${flightType}${
+        returnDate ? `&return_date=${returnDate}` : ""
+      }&currency=${currency}&hl=${hl}&api_key=${API_KEY}`;
 
       // Use the proxy with the fully formed URL
       const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
