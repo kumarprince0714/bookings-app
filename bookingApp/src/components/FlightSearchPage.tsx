@@ -145,9 +145,9 @@ const FlightSearchPage: React.FC = () => {
 
   return (
     <div className="h-screen mt-[5vh] flex flex-col items-center justify-center">
-      <div className="w-[88vw] lg:w-[75vw] border rounded border-black flex flex-col items-start p-4">
+      <div className="w-[60vw] lg:w-[75vw] border rounded border-black flex flex-col items-center lg:items-start p-4 min-h-40">
         {/* Flight Option Selection */}
-        <div className="row1 mb-4">
+        <div className="row1 mb-4 flex items-start ">
           <label className="mr-4">
             <input
               type="radio"
@@ -173,63 +173,66 @@ const FlightSearchPage: React.FC = () => {
         </div>
 
         {/* Search Fields */}
-        <div className="row2 mt-4 flex flex-wrap gap-4">
+        <div className="row2 my-4 flex-col flex lg:flex-row flex-wrap gap-4">
           {/* Departure Airport */}
-          <div className="flex items-center border border-gray-300 p-2">
-            <select
-              className="bg-transparent outline-none"
-              value={departureId}
-              onChange={(e) => setDepartureId(e.target.value)}
+          <div className="flex w-auto">
+            <div className="flex items-center border border-gray-300 p-2">
+              <select
+                className="bg-transparent outline-none w-auto text-sm"
+                value={departureId}
+                onChange={(e) => setDepartureId(e.target.value)}
+              >
+                <option value="">From (Select Airport)</option>
+                {airports.map((city) => (
+                  <option key={city.code} value={city.code}>
+                    {city.name} ({city.code})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Swap Button */}
+            <button
+              onClick={swapLocations}
+              className="p-1 bg-gray-200 rounded flex items-center w-7 lg:w-auto mx-1"
             >
-              <option value="">From (Select Airport)</option>
-              {airports.map((city) => (
-                <option key={city.code} value={city.code}>
-                  {city.name} ({city.code})
-                </option>
-              ))}
-            </select>
+              <TbArrowsExchange2 size={20} />
+            </button>
+
+            {/* Arrival Airport */}
+            <div className="flex items-center border border-gray-300 p-2">
+              <select
+                className="bg-transparent outline-none w-auto text-sm"
+                value={arrivalId}
+                onChange={(e) => setArrivalId(e.target.value)}
+              >
+                <option value="">To (Select Airport)</option>
+                {airports.map((city) => (
+                  <option key={city.code} value={city.code}>
+                    {city.name} ({city.code})
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          {/* Swap Button */}
-          <button
-            onClick={swapLocations}
-            className="p-2 bg-gray-200 rounded flex items-center"
-          >
-            <TbArrowsExchange2 size={20} />
-          </button>
-
-          {/* Arrival Airport */}
-          <div className="flex items-center border border-gray-300 p-2">
-            <select
-              className="bg-transparent outline-none"
-              value={arrivalId}
-              onChange={(e) => setArrivalId(e.target.value)}
-            >
-              <option value="">To (Select Airport)</option>
-              {airports.map((city) => (
-                <option key={city.code} value={city.code}>
-                  {city.name} ({city.code})
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap gap-4 mt-4">
-          {/* Depart Date */}
           <div className="border border-gray-300 p-2">
+            <label className="mb-1 mr-2 text-sm font-medium">Depart On:</label>
             <input
               type="date"
               className="outline-none"
-              placeholder="Depart On"
+              placeholder="Depart On "
               onChange={handleDepartDateChange}
               required
               min={dayjs().format("YYYY-MM-DD")}
             />
           </div>
-          {/* Return Date (if Round Trip) */}
           {selectedOption === "roundTrip" && (
             <div className="border border-gray-300 p-2">
+              <label className="mb-1 text-sm font-medium mr-2">
+                Return On:
+              </label>
+
               <input
                 type="date"
                 className="outline-none"
@@ -240,34 +243,31 @@ const FlightSearchPage: React.FC = () => {
               />
             </div>
           )}
-          {/* Travellers */}
-          <div className="border border-gray-300 p-2">
+          <div className="border border-gray-300 p-2 w-[20vw] lg:w-[12vw]">
             <input
               type="number"
               className="outline-none"
-              placeholder="Travellers"
+              placeholder="Travellers:"
               value={travellers}
               onChange={handleTravellersChange}
             />
           </div>
-        </div>
-
-        {/* Search Button */}
-        <div className="mt-4">
-          <button
-            onClick={handleSearch}
-            className="p-2 bg-blue-500 text-white flex items-center rounded"
-            disabled={
-              isLoading ||
-              !departureId ||
-              !arrivalId ||
-              !departDate ||
-              (selectedOption === "roundTrip" && !returnDate)
-            }
-          >
-            <IoSearch className="mr-1" size={20} />{" "}
-            {isLoading ? "Searching..." : "Search"}
-          </button>
+          <div className="">
+            <button
+              onClick={handleSearch}
+              className="p-2 bg-blue-500 text-white flex items-center justify-center rounded w-full lg:w-[6vw]"
+              disabled={
+                isLoading ||
+                !departureId ||
+                !arrivalId ||
+                !departDate ||
+                (selectedOption === "roundTrip" && !returnDate)
+              }
+            >
+              <IoSearch className="mr-1" size={20} />{" "}
+              {isLoading ? "Searching..." : "Search"}
+            </button>
+          </div>
         </div>
 
         {/* Results Section */}
