@@ -1,9 +1,6 @@
-//useSearchResultsService.ts
-
 import axios from "axios";
 
 //change
-
 //const SERPAPI_BASE_URL = "https://serpapi.com/search.json";
 
 // const SERPAPI_BASE_URL =
@@ -41,7 +38,7 @@ export const getSearchResults = async (
   currency: string = "USD",
   hl: string = "en"
 ) => {
-  const flightType = returnDate ? "1" : 2;
+  const flightType = returnDate ? "1" : "2";
   if (USE_MOCK_DATA) {
     try {
       console.log("Using mock data from db.json instead of remote API");
@@ -55,26 +52,73 @@ export const getSearchResults = async (
           route.origin === departureId && route.destination === arrivalId
       );
 
+      if (!matchingRoute) {
+        return {
+          search_metadata: {
+            status: "Success",
+            created_at: new Date().toISOString(),
+            id: "mock-search-" + Math.random().toString(36).substring(2, 9),
+          },
+          search_parameters: {
+            departure_id: departureId,
+            arrival_id: arrivalId,
+            outbound_date: outboundDate,
+            return_date: returnDate,
+            currency: currency,
+          },
+          best_flights: [],
+          cities: mockData.cities,
+        };
+      }
+
       // Map the nested flight data into a flat best_flights array.
-      // For each route flight object, we iterate over its nested "flights" array.
-      const best_flights = matchingRoute
-        ? matchingRoute.flights.flatMap((routeFlight: any) =>
+      let best_flights: any[] = [];
+
+      // For outbound flights
+      if (matchingRoute.flights && matchingRoute.flights.length > 0) {
+        const outboundFlights = matchingRoute.flights.flatMap(
+          (routeFlight: any) =>
             routeFlight.flights.map((flight: any) => ({
               airline: flight.airline,
-              flight_number: flight.flight_number, // note underscore as in db2.json
+              flight_number: flight.flight_number,
               departure_time: flight.departure_airport?.time,
               arrival_time: flight.arrival_airport?.time,
               duration: flight.duration,
-              // Use the route-level price; adjust as needed if flight-specific prices exist
-              // price: `${currency === "USD" ? "$" : "₹"}${routeFlight.price}`,
               price: routeFlight.price,
-              // Use the route-level type as flight type
-              flightType: routeFlight.type || matchingRoute.type,
-              // If stops info is available in flight.stops, use it; otherwise default to 0
+              flightType: "Outbound", // Explicitly mark as outbound
+              type: "Outbound",
               stops: flight.stops ? flight.stops.length : 0,
             }))
-          )
-        : [];
+        );
+        best_flights = [...best_flights, ...outboundFlights];
+      }
+
+      // For return flights (if roundtrip)
+      if (returnDate) {
+        // Find the reverse route (from arrival back to departure)
+        const returnRoute = mockData.routes.find(
+          (route: any) =>
+            route.origin === arrivalId && route.destination === departureId
+        );
+
+        if (returnRoute && returnRoute.flights) {
+          const returnFlights = returnRoute.flights.flatMap(
+            (routeFlight: any) =>
+              routeFlight.flights.map((flight: any) => ({
+                airline: flight.airline,
+                flight_number: flight.flight_number,
+                departure_time: flight.departure_airport?.time,
+                arrival_time: flight.arrival_airport?.time,
+                duration: flight.duration,
+                price: routeFlight.price,
+                flightType: "Return", // Explicitly mark as return
+                type: "Return",
+                stops: flight.stops ? flight.stops.length : 0,
+              }))
+          );
+          best_flights = [...best_flights, ...returnFlights];
+        }
+      }
 
       // Format the response to mimic SerpAPI's structure
       const formattedResponse = {
