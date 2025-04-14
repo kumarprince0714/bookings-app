@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TbArrowsExchange2 } from "react-icons/tb";
+import { GiCommercialAirplane } from "react-icons/gi";
+
 import { IoSearch } from "react-icons/io5";
 import dayjs from "dayjs";
 import { useSearchResults } from "../api/useSearchResults";
@@ -111,26 +113,73 @@ const FlightSearchPage: React.FC = () => {
         const flightDetail = route.flights && route.flights[0];
 
         return (
-          <div key={index} className="border p-4 rounded shadow-sm mb-4">
-            <p>
-              <strong>Airline:</strong> {flightDetail?.airline || "N/A"}
-            </p>
-            <p>
-              <strong>Flight No:</strong> {flightDetail?.flight_number || "N/A"}
-            </p>
-            <p>
-              <strong>Duration:</strong>{" "}
-              {flightDetail?.duration
-                ? `${flightDetail.duration} minutes`
-                : "N/A"}
-            </p>
-            <p>
-              <strong>Price:</strong>{" "}
-              {route.price !== undefined ? `$${route.price}` : "N/A"}
-            </p>
-            <p>
-              <strong>Type:</strong> {route.type || "N/A"}
-            </p>
+          <div
+            key={index}
+            className=" p-4 rounded shadow-lg mb-4 w-full bg-gray-100"
+          >
+            <div className="flex flex-col">
+              <div className="flex">
+                <div className="flex mr-2">
+                  {flightDetail?.airline_logo ? (
+                    <img
+                      src={flightDetail.airline_logo}
+                      alt={flightDetail.airline}
+                      title={flightDetail.airline}
+                      className="h-10 w-10 mx-2"
+                    />
+                  ) : null}
+                </div>
+
+                <div className="flex flex-col items-start mx-auto">
+                  <p>
+                    <strong>Airline:</strong> {flightDetail?.airline || "N/A"}
+                  </p>
+                  <p>
+                    <strong>Flight No:</strong>{" "}
+                    {flightDetail?.flight_number || "N/A"}
+                  </p>
+                </div>
+                <div className="flex flex-col items-start mx-auto">
+                  <p>
+                    <strong>Departure:</strong>{" "}
+                    {flightDetail?.departure_airport.time || "N/A"}
+                  </p>
+                  <p>
+                    <strong>Arrival:</strong>{" "}
+                    {flightDetail?.arrival_airport?.time || "N/A"}
+                  </p>
+                  <p>
+                    <strong>Duration:</strong>{" "}
+                    {flightDetail?.duration
+                      ? `${flightDetail.duration} minutes`
+                      : "N/A"}
+                  </p>
+                </div>
+                <div className="flex flex-col items-start mx-auto">
+                  <p>
+                    <strong>Price:</strong>{" "}
+                    {route.price !== undefined ? `$${route.price}` : "N/A"}
+                  </p>
+                  <p>
+                    <strong>Type:</strong> {route.type || "N/A"}
+                  </p>
+                  <p>
+                    <strong>Class:</strong>{" "}
+                    {flightDetail?.travel_class || "N/A"}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-2 flex justify-between p-2">
+                <p>
+                  <strong>Additinal info & anemities:</strong>{" "}
+                  {flightDetail?.extensions?.join(", ") || "N/A"}
+                </p>
+                <button className="cursor-pointer p-2 bg-blue-500 text-white flex items-center justify-center rounded">
+                  Book &nbsp;
+                  <GiCommercialAirplane className="mr-1" size={20} />
+                </button>
+              </div>
+            </div>
           </div>
         );
       });
@@ -145,7 +194,7 @@ const FlightSearchPage: React.FC = () => {
 
   return (
     <div className="h-screen mt-[5vh] flex flex-col items-center justify-center">
-      <div className="w-[60vw] lg:w-[75vw] border rounded border-black flex flex-col items-center lg:items-start p-4 min-h-40">
+      <div className="w-[60vw] lg:w-[75vw] md:border rounded border-black flex flex-col items-center lg:items-start p-4 min-h-40 h-auto mt-10">
         {/* Flight Option Selection */}
         <div className="row1 mb-4 flex items-start ">
           <label className="mr-4">
@@ -176,7 +225,7 @@ const FlightSearchPage: React.FC = () => {
         <div className="row2 my-4 flex-col flex lg:flex-row flex-wrap gap-4">
           {/* Departure Airport */}
           <div className="flex w-auto">
-            <div className="flex items-center border border-gray-300 p-2">
+            <div className="flex items-center border border-gray-300 p-2 w-[44vw] md:w-[25vw] lg:w-auto">
               <select
                 className="bg-transparent outline-none w-auto text-sm"
                 value={departureId}
@@ -200,7 +249,7 @@ const FlightSearchPage: React.FC = () => {
             </button>
 
             {/* Arrival Airport */}
-            <div className="flex items-center border border-gray-300 p-2">
+            <div className="flex items-center border border-gray-300 p-2 w-[44vw] md:w-[25vw] lg:w-auto">
               <select
                 className="bg-transparent outline-none w-auto text-sm"
                 value={arrivalId}

@@ -17,7 +17,7 @@ const API_KEY =
   "e5f96669e31c03158152d0d60a7b61c7bf18b745b8f08998795e506894b5976b";
 
 // Function to fetch the db.json file
-const USE_MOCK_DATA = true; // Toggle this to switch between mock and real API
+const USE_MOCK_DATA = false; // Toggle this to switch between mock and real API
 
 const fetchMockData = async () => {
   try {
@@ -66,7 +66,8 @@ export const getSearchResults = async (
               arrival_time: flight.arrival_airport?.time,
               duration: flight.duration,
               // Use the route-level price; adjust as needed if flight-specific prices exist
-              price: `${currency === "USD" ? "$" : "₹"}${routeFlight.price}`,
+              // price: `${currency === "USD" ? "$" : "₹"}${routeFlight.price}`,
+              price: routeFlight.price,
               // Use the route-level type as flight type
               flightType: routeFlight.type || matchingRoute.type,
               // If stops info is available in flight.stops, use it; otherwise default to 0
