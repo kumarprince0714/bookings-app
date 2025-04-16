@@ -1,6 +1,6 @@
 // useSearchResults.ts
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getSearchResults } from "./useSearchResultsService";
 
 export const useSearchResults = (
@@ -9,7 +9,8 @@ export const useSearchResults = (
   outboundDate: string,
   returnDate: string,
   currency: string = "USD",
-  language: string = "en"
+  language: string = "en",
+  travelClass: string = ""
 ) => {
   const [searchResults, setSearchResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,7 +31,8 @@ export const useSearchResults = (
         outboundDate,
         returnDate,
         currency,
-        language
+        language,
+        travelClass
       );
       setSearchResults(data);
     } catch (err) {

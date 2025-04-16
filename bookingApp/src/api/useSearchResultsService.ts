@@ -1,15 +1,5 @@
 import axios from "axios";
 
-//change
-//const SERPAPI_BASE_URL = "https://serpapi.com/search.json";
-
-// const SERPAPI_BASE_URL =
-//   "https://corsproxy.io/?https://serpapi.com/search.json";
-// Or another CORS proxy like
-const SERPAPI_BASE_URL =
-  "https://api.allorigins.win/raw?url=" +
-  encodeURIComponent("https://serpapi.com/search.json");
-
 const API_KEY =
   "e5f96669e31c03158152d0d60a7b61c7bf18b745b8f08998795e506894b5976b";
 
@@ -36,7 +26,8 @@ export const getSearchResults = async (
   outboundDate: string,
   returnDate: string,
   currency: string = "USD",
-  hl: string = "en"
+  hl: string = "en",
+  travelClass: string = ""
 ) => {
   const flightType = returnDate ? "1" : "2";
   if (USE_MOCK_DATA) {
@@ -65,6 +56,8 @@ export const getSearchResults = async (
             outbound_date: outboundDate,
             return_date: returnDate,
             currency: currency,
+            travel_class: travelClass,
+            hl: hl,
           },
           best_flights: [],
           cities: mockData.cities,
@@ -88,6 +81,7 @@ export const getSearchResults = async (
               flightType: "Outbound", // Explicitly mark as outbound
               type: "Outbound",
               stops: flight.stops ? flight.stops.length : 0,
+              travel_class: travelClass,
             }))
         );
         best_flights = [...best_flights, ...outboundFlights];
@@ -114,6 +108,7 @@ export const getSearchResults = async (
                 flightType: "Return", // Explicitly mark as return
                 type: "Return",
                 stops: flight.stops ? flight.stops.length : 0,
+                travel_class: travelClass,
               }))
           );
           best_flights = [...best_flights, ...returnFlights];
@@ -133,6 +128,7 @@ export const getSearchResults = async (
           outbound_date: outboundDate,
           return_date: returnDate,
           currency: currency,
+          travel_class: travelClass,
         },
         best_flights,
         cities: mockData.cities,
