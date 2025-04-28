@@ -177,7 +177,7 @@ const FlightSearchPage: React.FC = () => {
           <div className="flex flex-col">
             <div className="div1 flex flex-col lg:flex-row px-1">
               {/* Radio button for selection */}
-              <div className="mr-4">
+              <div className="flex justify-end">
                 <input
                   type="radio"
                   name={isOutbound ? "outboundFlight" : "returnFlight"}
@@ -189,7 +189,7 @@ const FlightSearchPage: React.FC = () => {
                       setSelectedReturnFlight(index);
                     }
                   }}
-                  className="h-5 w-5 cursor-pointer flex m-2"
+                  className="radio1 h-5 w-5 cursor-pointer flex  m-2"
                 />
               </div>
 
@@ -247,6 +247,7 @@ const FlightSearchPage: React.FC = () => {
                   <strong>Class:</strong> {flightDetail?.travel_class || "N/A"}
                 </p>
               </div>
+              <div className=""></div>
             </div>
             <div className="mt-2 flex flex-col lg:flex-row justify-between p-2">
               <p className="w-full text-left">
@@ -366,7 +367,7 @@ const FlightSearchPage: React.FC = () => {
 
   return (
     <div className="h-auto mt-[5vh] flex flex-col items-center justify-center ">
-      <div className="w-fit  md:border rounded border-black flex flex-col items-start p-4 min-h-40 h-auto mt-10 mx-auto">
+      <div className="w-fit  md:border rounded border-black flex flex-col items-start md:items-center p-4 min-h-40 h-auto mt-10 mx-auto">
         {/* Flight Option Selection */}
         <div className="flex items-center flex-col">
           <div className="row1 mb-4 flex items-start ">
