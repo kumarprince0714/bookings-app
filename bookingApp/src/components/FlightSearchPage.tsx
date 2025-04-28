@@ -4,7 +4,7 @@ import { GiCommercialAirplane } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
 import dayjs from "dayjs";
 import { useSearchResults } from "../api/useSearchResults";
-
+import FlightsFilter from "./FlightsFilter";
 interface City {
   code: string;
   name: string;
@@ -515,19 +515,24 @@ const FlightSearchPage: React.FC = () => {
             )}
             {searchResults && !isLoading && (
               <div className="mt-4">
-                <h2 className="text-xl font-semibold mb-4">
-                  Flight Results for {departureId} to {arrivalId}
-                  {selectedOption === "oneWay"
-                    ? ` on ${dayjs(departDate).format("MMM D, YYYY")}`
-                    : ` (${dayjs(departDate).format("MMM D, YYYY")} - ${dayjs(
-                        returnDate
-                      ).format("MMM D, YYYY")})`}
-                </h2>
-                {renderFlights() || (
-                  <p className="text-center p-4 border rounded">
-                    No flights found for your search criteria.
-                  </p>
-                )}
+                <div className="mb-2">
+                  <FlightsFilter />
+                </div>
+                <div>
+                  <h2 className="text-xl font-semibold mb-4">
+                    Flight Results for {departureId} to {arrivalId}
+                    {selectedOption === "oneWay"
+                      ? ` on ${dayjs(departDate).format("MMM D, YYYY")}`
+                      : ` (${dayjs(departDate).format("MMM D, YYYY")} - ${dayjs(
+                          returnDate
+                        ).format("MMM D, YYYY")})`}
+                  </h2>
+                  {renderFlights() || (
+                    <p className="text-center p-4 border rounded">
+                      No flights found for your search criteria.
+                    </p>
+                  )}
+                </div>
               </div>
             )}
           </div>
