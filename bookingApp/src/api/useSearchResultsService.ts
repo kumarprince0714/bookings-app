@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API_KEY =
-  "e5f96669e31c03158152d0d60a7b61c7bf18b745b8f08998795e506894b5976b";
+const API_KEY = import.meta.env.VITE_SERP_API_KEY;
 
 // Function to fetch the db.json file
 const USE_MOCK_DATA = false; // Toggle this to switch between mock and real API
