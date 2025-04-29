@@ -1,18 +1,19 @@
 import axios from "axios";
+import { FlightSearchResponse, BestFlight, MockData } from "../types/types";
 
 const API_KEY = import.meta.env.VITE_SERP_API_KEY;
 
 // Function to fetch the db.json file
 const USE_MOCK_DATA = false; // Toggle this to switch between mock and real API
 
-const fetchMockData = async () => {
+const fetchMockData = async (): Promise<MockData> => {
   try {
     // This assumes db.json is in the public folder of your React app
     const response = await fetch("/db2.json");
     if (!response.ok) {
       throw new Error("Failed to fetch mock data");
     }
-    return await response.json();
+    return (await response.json()) as MockData;
   } catch (error) {
     console.error("Error loading mock data:", error);
     throw error;
@@ -23,12 +24,13 @@ export const getSearchResults = async (
   departureId: string,
   arrivalId: string,
   outboundDate: string,
-  returnDate: string,
+  returnDate: string | null,
   currency: string = "USD",
   hl: string = "en",
   travelClass: string = ""
-) => {
+): Promise<FlightSearchResponse> => {
   const flightType = returnDate ? "1" : "2";
+
   if (USE_MOCK_DATA) {
     try {
       console.log("Using mock data from db.json instead of remote API");
@@ -38,7 +40,7 @@ export const getSearchResults = async (
 
       // Find the route that matches departure and arrival
       const matchingRoute = mockData.routes.find(
-        (route: any) =>
+        (route) =>
           route.origin === departureId && route.destination === arrivalId
       );
 
@@ -53,7 +55,7 @@ export const getSearchResults = async (
             departure_id: departureId,
             arrival_id: arrivalId,
             outbound_date: outboundDate,
-            return_date: returnDate,
+            return_date: returnDate || undefined,
             currency: currency,
             travel_class: travelClass,
             hl: hl,
@@ -64,24 +66,23 @@ export const getSearchResults = async (
       }
 
       // Map the nested flight data into a flat best_flights array.
-      let best_flights: any[] = [];
+      let best_flights: BestFlight[] = [];
 
       // For outbound flights
       if (matchingRoute.flights && matchingRoute.flights.length > 0) {
-        const outboundFlights = matchingRoute.flights.flatMap(
-          (routeFlight: any) =>
-            routeFlight.flights.map((flight: any) => ({
-              airline: flight.airline,
-              flight_number: flight.flight_number,
-              departure_time: flight.departure_airport?.time,
-              arrival_time: flight.arrival_airport?.time,
-              duration: flight.duration,
-              price: routeFlight.price,
-              flightType: "Outbound", // Explicitly mark as outbound
-              type: "Outbound",
-              stops: flight.stops ? flight.stops.length : 0,
-              travel_class: travelClass,
-            }))
+        const outboundFlights = matchingRoute.flights.flatMap((routeFlight) =>
+          routeFlight.flights.map((flight) => ({
+            airline: flight.airline,
+            flight_number: flight.flight_number,
+            departure_time: flight.departure_airport?.time || "",
+            arrival_time: flight.arrival_airport?.time || "",
+            duration: flight.duration,
+            price: routeFlight.price,
+            flightType: "Outbound" as const, // Explicitly mark as outbound
+            type: "Outbound" as const,
+            stops: flight.stops ? flight.stops.length : 0,
+            travel_class: travelClass,
+          }))
         );
         best_flights = [...best_flights, ...outboundFlights];
       }
@@ -90,32 +91,31 @@ export const getSearchResults = async (
       if (returnDate) {
         // Find the reverse route (from arrival back to departure)
         const returnRoute = mockData.routes.find(
-          (route: any) =>
+          (route) =>
             route.origin === arrivalId && route.destination === departureId
         );
 
         if (returnRoute && returnRoute.flights) {
-          const returnFlights = returnRoute.flights.flatMap(
-            (routeFlight: any) =>
-              routeFlight.flights.map((flight: any) => ({
-                airline: flight.airline,
-                flight_number: flight.flight_number,
-                departure_time: flight.departure_airport?.time,
-                arrival_time: flight.arrival_airport?.time,
-                duration: flight.duration,
-                price: routeFlight.price,
-                flightType: "Return", // Explicitly mark as return
-                type: "Return",
-                stops: flight.stops ? flight.stops.length : 0,
-                travel_class: travelClass,
-              }))
+          const returnFlights = returnRoute.flights.flatMap((routeFlight) =>
+            routeFlight.flights.map((flight) => ({
+              airline: flight.airline,
+              flight_number: flight.flight_number,
+              departure_time: flight.departure_airport?.time || "",
+              arrival_time: flight.arrival_airport?.time || "",
+              duration: flight.duration,
+              price: routeFlight.price,
+              flightType: "Return" as const, // Explicitly mark as return
+              type: "Return" as const,
+              stops: flight.stops ? flight.stops.length : 0,
+              travel_class: travelClass,
+            }))
           );
           best_flights = [...best_flights, ...returnFlights];
         }
       }
 
       // Format the response to mimic SerpAPI's structure
-      const formattedResponse = {
+      const formattedResponse: FlightSearchResponse = {
         search_metadata: {
           status: "Success",
           created_at: new Date().toISOString(),
@@ -125,7 +125,7 @@ export const getSearchResults = async (
           departure_id: departureId,
           arrival_id: arrivalId,
           outbound_date: outboundDate,
-          return_date: returnDate,
+          return_date: returnDate || undefined,
           currency: currency,
           travel_class: travelClass,
         },
@@ -151,12 +151,12 @@ export const getSearchResults = async (
         serpApiUrl
       )}`;
 
-      const response = await axios.get(proxyUrl);
+      const response = await axios.get<FlightSearchResponse>(proxyUrl);
       console.log("API Response:", response.data);
       return response.data;
     } catch (error) {
       console.log("Error fetching flight data:", error);
-      throw error;
+      throw error as Error;
     }
   }
 };

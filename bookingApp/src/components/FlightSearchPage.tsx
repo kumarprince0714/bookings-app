@@ -1,12 +1,11 @@
-// FlightSearchPage.tsx
+//FlightSearchPage.tsx
 import React, { useState, useEffect } from "react";
 import { TbArrowsExchange2 } from "react-icons/tb";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
 import dayjs from "dayjs";
 import { useSearchResults } from "../api/useSearchResults";
-import FlightsFilter, { FilterState } from "./FlightsFilter";
-
+import FlightsFilter from "./FlightsFilter";
 interface City {
   code: string;
   name: string;
@@ -47,38 +46,23 @@ const FlightSearchPage: React.FC = () => {
   const [arrivalId, setArrivalId] = useState("");
   const [departDate, setDepartDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
+
   const [currency, setCurrency] = useState("USD");
   const [language, setLanguage] = useState("en");
   const [searchTriggered, setSearchTriggered] = useState(false);
+
   const [travelClass, setTravelClass] = useState("");
 
-  // Use IDs to select flights instead of indices
-  const [selectedOutboundFlightId, setSelectedOutboundFlightId] = useState<
-    string | null
+  // Added state for selected flights
+  const [selectedOutboundFlight, setSelectedOutboundFlight] = useState<
+    number | null
   >(null);
-  const [selectedReturnFlightId, setSelectedReturnFlightId] = useState<
-    string | null
+  const [selectedReturnFlight, setSelectedReturnFlight] = useState<
+    number | null
   >(null);
 
-  // Add new state for filters
-  const [filters, setFilters] = useState<FilterState>({
-    outboundEarlyMorning: false,
-    outboundMorning: false,
-    outboundAfternoon: false,
-    outboundNight: false,
-    inboundEarlyMorning: false,
-    inboundMorning: false,
-    inboundAfternoon: false,
-    inboundNight: false,
-    departPriceMax: 5000,
-    returnPriceMax: 5000,
-  });
-
-  // Add filtered results state
-  const [filteredOutboundFlights, setFilteredOutboundFlights] = useState<any[]>(
-    []
-  );
-  const [filteredReturnFlights, setFilteredReturnFlights] = useState<any[]>([]);
+  // Hard-code flight class for testing
+  //const travelClass = "Business";
 
   const { searchResults, isLoading, error, refetch } = useSearchResults(
     departureId,
@@ -87,208 +71,21 @@ const FlightSearchPage: React.FC = () => {
     selectedOption === "roundTrip" ? returnDate : "",
     currency,
     language,
+    //travellers,
     travelClass
   );
 
-  // Time category determination function with better format handling
-  const getTimeCategory = (timeStr: string): string => {
-    if (!timeStr) return "";
-
-    // Normalize the time string by removing any extra spaces
-    const normalizedTimeStr = timeStr.trim();
-
-    let hour: number;
-
-    // Handle formats with AM/PM (12-hour format)
-    if (
-      normalizedTimeStr.toUpperCase().includes("AM") ||
-      normalizedTimeStr.toUpperCase().includes("PM")
-    ) {
-      const timePattern = /(\d{1,2}):(\d{2})\s*(AM|PM|am|pm)/;
-      const match = normalizedTimeStr.match(timePattern);
-
-      if (!match) {
-        console.warn(`Invalid time format: ${timeStr}`);
-        return "";
-      }
-
-      hour = parseInt(match[1], 10);
-      const period = match[3].toUpperCase();
-
-      // Convert 12-hour format to 24-hour format
-      if (period === "PM" && hour < 12) hour += 12;
-      if (period === "AM" && hour === 12) hour = 0;
-    } else {
-      // Handle 24-hour format (e.g., "14:45" or "14.45")
-      const timePattern = /(\d{1,2})[:.](\d{2})/;
-      const match = normalizedTimeStr.match(timePattern);
-
-      if (!match) {
-        console.warn(`Invalid time format: ${timeStr}`);
-        return "";
-      }
-
-      hour = parseInt(match[1], 10);
-    }
-
-    // Categorize the time based on hour
-    if (hour >= 0 && hour < 6) return "earlyMorning";
-    if (hour >= 6 && hour < 12) return "morning";
-    if (hour >= 12 && hour < 18) return "afternoon";
-    return "night";
-  };
-
-  //Function for filtering flights by time
-  const filterFlightsByTime = (
-    flights: any[],
-    timeFilters: {
-      earlyMorning: boolean;
-      morning: boolean;
-      afternoon: boolean;
-      night: boolean;
-    }
-  ) => {
-    // Check if any time filter is active
-    const anyTimeFilterActive = Object.values(timeFilters).some(
-      (value) => value
-    );
-
-    // If no time filters are active, return all flights
-    if (!anyTimeFilterActive) return flights;
-
-    return flights.filter((flight: any) => {
-      // Get departure time from wherever it exists in the flight object
-      const departureTime =
-        flight.departure_time ||
-        (flight.flights && flight.flights[0]?.departure_airport?.time) ||
-        "";
-
-      // Get the time category
-      const timeCategory = getTimeCategory(departureTime);
-
-      // Check if the flight matches any of the active time filters
-      const matchesFilter =
-        (timeCategory === "earlyMorning" && timeFilters.earlyMorning) ||
-        (timeCategory === "morning" && timeFilters.morning) ||
-        (timeCategory === "afternoon" && timeFilters.afternoon) ||
-        (timeCategory === "night" && timeFilters.night);
-
-      return matchesFilter;
-    });
-  };
-
-  // Effect for handling new search results
   useEffect(() => {
     if (searchResults) {
       console.log("Search Results:", searchResults);
       // Reset selected flights when new search results arrive
-      setSelectedOutboundFlightId(null);
-      setSelectedReturnFlightId(null);
+      setSelectedOutboundFlight(null);
+      setSelectedReturnFlight(null);
     }
     if (error) {
       console.error("Search Error:", error);
     }
   }, [searchResults, error]);
-
-  // Separate effect to prepare flight data with IDs
-  useEffect(() => {
-    if (!searchResults || !searchResults.best_flights) {
-      setFilteredOutboundFlights([]);
-      setFilteredReturnFlights([]);
-      return;
-    }
-
-    // First, add unique IDs to all flights if they don't have them
-    const flightsWithIds = searchResults.best_flights.map(
-      (flight: any, index: number) => ({
-        ...flight,
-        uniqueId: flight.uniqueId || `flight-${index}`,
-      })
-    );
-
-    // Separate outbound and return flights
-    let outboundFlights = flightsWithIds.filter(
-      (route: any) =>
-        route.type === "Outbound" || route.flightType === "Outbound"
-    );
-
-    let returnFlights = flightsWithIds.filter(
-      (route: any) => route.type === "Return" || route.flightType === "Return"
-    );
-
-    // If flights aren't specifically labeled, divide array in half
-    if (
-      outboundFlights.length === 0 &&
-      returnFlights.length === 0 &&
-      selectedOption === "roundTrip"
-    ) {
-      const halfIndex = Math.ceil(flightsWithIds.length / 2);
-      outboundFlights = flightsWithIds.slice(0, halfIndex);
-      returnFlights = flightsWithIds.slice(halfIndex);
-    } else if (outboundFlights.length === 0 && selectedOption === "oneWay") {
-      // For one-way, all flights are outbound
-      outboundFlights = flightsWithIds;
-    }
-
-    // Apply time filters to outbound flights
-    const timeFilteredOutbound = filterFlightsByTime(outboundFlights, {
-      earlyMorning: filters.outboundEarlyMorning,
-      morning: filters.outboundMorning,
-      afternoon: filters.outboundAfternoon,
-      night: filters.outboundNight,
-    });
-
-    // Apply price filter to outbound flights
-    const priceFilteredOutbound = timeFilteredOutbound.filter((flight: any) => {
-      const price = Number(flight.price) || 0;
-      return price <= filters.departPriceMax;
-    });
-
-    // Apply time filters to return flights
-    const timeFilteredReturn = filterFlightsByTime(returnFlights, {
-      earlyMorning: filters.inboundEarlyMorning,
-      morning: filters.inboundMorning,
-      afternoon: filters.inboundAfternoon,
-      night: filters.inboundNight,
-    });
-
-    const priceFilteredReturn = timeFilteredReturn.filter((flight: any) => {
-      const price = Number(flight.price) || 0;
-      return price <= filters.returnPriceMax;
-    });
-
-    setFilteredOutboundFlights(priceFilteredOutbound);
-    setFilteredReturnFlights(priceFilteredReturn);
-  }, [searchResults, filters, selectedOption]);
-
-  // Separate effect to validate selected flights when filtered results change
-  useEffect(() => {
-    // Check if selected flights still exist in filtered results
-    if (selectedOutboundFlightId !== null) {
-      const outboundExists = filteredOutboundFlights.some(
-        (flight) => flight.uniqueId === selectedOutboundFlightId
-      );
-
-      if (!outboundExists) {
-        setSelectedOutboundFlightId(null);
-      }
-    }
-
-    if (selectedReturnFlightId !== null) {
-      const returnExists = filteredReturnFlights.some(
-        (flight) => flight.uniqueId === selectedReturnFlightId
-      );
-
-      if (!returnExists) {
-        setSelectedReturnFlightId(null);
-      }
-    }
-  }, [
-    filteredOutboundFlights,
-    filteredReturnFlights,
-    selectedOutboundFlightId,
-    selectedReturnFlightId,
-  ]);
 
   // Handlers for input changes
   const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -307,11 +104,6 @@ const FlightSearchPage: React.FC = () => {
 
   const handleTravelClassChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTravelClass(e.target.value);
-  };
-
-  // Handle filter changes from FlightsFilter component
-  const handleFilterChange = (newFilters: FilterState) => {
-    setFilters(newFilters);
   };
 
   const handleSearch = () => {
@@ -343,31 +135,22 @@ const FlightSearchPage: React.FC = () => {
 
   const handleBooking = () => {
     // Handle the booking process with the selected flights
-    if (selectedOption === "oneWay" && selectedOutboundFlightId !== null) {
-      const selectedFlight = filteredOutboundFlights.find(
-        (flight) => flight.uniqueId === selectedOutboundFlightId
-      );
-      console.log("Booking one-way flight:", selectedFlight);
+    if (selectedOption === "oneWay" && selectedOutboundFlight !== null) {
+      console.log("Booking one-way flight:", selectedOutboundFlight);
       // Implement booking logic
-      alert(`Booking flight ${selectedOutboundFlightId}`);
+      alert(`Booking flight ${selectedOutboundFlight}`);
     } else if (
       selectedOption === "roundTrip" &&
-      selectedOutboundFlightId !== null &&
-      selectedReturnFlightId !== null
+      selectedOutboundFlight !== null &&
+      selectedReturnFlight !== null
     ) {
-      const outboundFlight = filteredOutboundFlights.find(
-        (flight) => flight.uniqueId === selectedOutboundFlightId
-      );
-      const returnFlight = filteredReturnFlights.find(
-        (flight) => flight.uniqueId === selectedReturnFlightId
-      );
       console.log("Booking round-trip flights:", {
-        outbound: outboundFlight,
-        return: returnFlight,
+        outbound: selectedOutboundFlight,
+        return: selectedReturnFlight,
       });
       // Implement booking logic
       alert(
-        `Booking outbound flight ${selectedOutboundFlightId} and return flight ${selectedReturnFlightId}`
+        `Booking outbound flight ${selectedOutboundFlight} and return flight ${selectedReturnFlight}`
       );
     } else {
       alert("Please select flights for your journey");
@@ -376,34 +159,18 @@ const FlightSearchPage: React.FC = () => {
 
   // Helper function to render a list of flights with radio buttons
   const renderFlightList = (flights: any[], isOutbound: boolean) => {
-    return flights.map((route: any) => {
+    return flights.map((route: any, index: number) => {
       // Get the first flight from the nested flights array if available
       const flightDetail = route.flights && route.flights[0];
 
-      // Determine if this flight is selected using the unique ID
+      // Determine if this flight is selected
       const isSelected = isOutbound
-        ? selectedOutboundFlightId === route.uniqueId
-        : selectedReturnFlightId === route.uniqueId;
-
-      // Get the departure time and its category for display
-      const departureTime =
-        flightDetail?.departure_airport?.time || route.departure_time || "N/A";
-      const timeCategory = getTimeCategory(departureTime);
-      const timeCategoryDisplay = timeCategory
-        ? `(${
-            timeCategory === "earlyMorning"
-              ? "Early Morning"
-              : timeCategory === "morning"
-              ? "Morning"
-              : timeCategory === "afternoon"
-              ? "Afternoon"
-              : "Night"
-          })`
-        : "";
+        ? selectedOutboundFlight === index
+        : selectedReturnFlight === index;
 
       return (
         <div
-          key={route.uniqueId}
+          key={index}
           className={`div2 lg:py-4 rounded shadow-lg mb-4 w-[80vw] md:w-auto ${
             isSelected ? "bg-blue-100 border-2 border-blue-300" : "bg-gray-100"
           }`}
@@ -418,12 +185,12 @@ const FlightSearchPage: React.FC = () => {
                   checked={isSelected}
                   onChange={() => {
                     if (isOutbound) {
-                      setSelectedOutboundFlightId(route.uniqueId);
+                      setSelectedOutboundFlight(index);
                     } else {
-                      setSelectedReturnFlightId(route.uniqueId);
+                      setSelectedReturnFlight(index);
                     }
                   }}
-                  className="radio1 h-5 w-5 cursor-pointer flex m-2"
+                  className="radio1 h-5 w-5 cursor-pointer flex  m-2"
                 />
               </div>
 
@@ -450,8 +217,10 @@ const FlightSearchPage: React.FC = () => {
               </div>
               <div className="flex flex-col items-start lg:mx-auto">
                 <p>
-                  <strong>Departure:</strong> {departureTime}{" "}
-                  {timeCategoryDisplay}
+                  <strong>Departure:</strong>{" "}
+                  {flightDetail?.departure_airport?.time ||
+                    route.departure_time ||
+                    "N/A"}
                 </p>
                 <p>
                   <strong>Arrival:</strong>{" "}
@@ -500,6 +269,29 @@ const FlightSearchPage: React.FC = () => {
     if (searchResults.best_flights && searchResults.best_flights.length > 0) {
       // For round trips, we need to separate outbound and return flights
       if (selectedOption === "roundTrip") {
+        // Find outbound and return flights based on dates or flight type
+        const outboundFlights = searchResults.best_flights.filter(
+          (route: any) =>
+            route.type === "Outbound" || route.flightType === "Outbound"
+        );
+
+        const returnFlights = searchResults.best_flights.filter(
+          (route: any) =>
+            route.type === "Return" || route.flightType === "Return"
+        );
+
+        // If the API doesn't specifically label flights as outbound/return,
+        // we can assume the first half of flights are outbound and second half are return
+        const halfIndex = Math.ceil(searchResults.best_flights.length / 2);
+        const defaultOutbound =
+          outboundFlights.length > 0
+            ? outboundFlights
+            : searchResults.best_flights.slice(0, halfIndex);
+        const defaultReturn =
+          returnFlights.length > 0
+            ? returnFlights
+            : searchResults.best_flights.slice(halfIndex);
+
         return (
           <>
             <h3 className="text-lg font-medium mb-3">
@@ -508,17 +300,8 @@ const FlightSearchPage: React.FC = () => {
                 ` - ${
                   travelClasses.find((c) => c.value === travelClass)?.label
                 }`}
-              {filteredOutboundFlights.length !==
-                searchResults.best_flights.length / 2 &&
-                ` - ${filteredOutboundFlights.length} flights matching filters`}
             </h3>
-            {filteredOutboundFlights.length > 0 ? (
-              renderFlightList(filteredOutboundFlights, true)
-            ) : (
-              <p className="py-4 text-center">
-                No outbound flights match your filters.
-              </p>
-            )}
+            {renderFlightList(defaultOutbound, true)}
 
             <h3 className="text-lg font-medium my-4">
               Return Flights ({dayjs(returnDate).format("MMM D, YYYY")})
@@ -526,29 +309,20 @@ const FlightSearchPage: React.FC = () => {
                 ` - ${
                   travelClasses.find((c) => c.value === travelClass)?.label
                 }`}
-              {filteredReturnFlights.length !==
-                searchResults.best_flights.length / 2 &&
-                ` - ${filteredReturnFlights.length} flights matching filters`}
             </h3>
-            {filteredReturnFlights.length > 0 ? (
-              renderFlightList(filteredReturnFlights, false)
-            ) : (
-              <p className="py-4 text-center">
-                No return flights match your filters.
-              </p>
-            )}
+            {renderFlightList(defaultReturn, false)}
 
             {/* Booking button for round trip */}
             <div className="mt-6 flex justify-center">
               <button
                 onClick={handleBooking}
                 disabled={
-                  selectedOutboundFlightId === null ||
-                  selectedReturnFlightId === null
+                  selectedOutboundFlight === null ||
+                  selectedReturnFlight === null
                 }
                 className={`p-3 flex items-center justify-center rounded text-white ${
-                  selectedOutboundFlightId !== null &&
-                  selectedReturnFlightId !== null
+                  selectedOutboundFlight !== null &&
+                  selectedReturnFlight !== null
                     ? "bg-blue-500 hover:bg-blue-600"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
@@ -563,19 +337,15 @@ const FlightSearchPage: React.FC = () => {
         // For one-way trips, render all flights
         return (
           <>
-            {filteredOutboundFlights.length > 0 ? (
-              renderFlightList(filteredOutboundFlights, true)
-            ) : (
-              <p className="py-4 text-center">No flights match your filters.</p>
-            )}
+            {renderFlightList(searchResults.best_flights, true)}
 
             {/* Booking button for one-way */}
             <div className="mt-6 flex justify-center">
               <button
                 onClick={handleBooking}
-                disabled={selectedOutboundFlightId === null}
+                disabled={selectedOutboundFlight === null}
                 className={`p-3 flex items-center justify-center rounded text-white ${
-                  selectedOutboundFlightId !== null
+                  selectedOutboundFlight !== null
                     ? "bg-blue-500 hover:bg-blue-600"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
@@ -746,12 +516,7 @@ const FlightSearchPage: React.FC = () => {
             )}
             {searchResults && !isLoading && (
               <div className="mt-4">
-                <div className="mb-2">
-                  <FlightsFilter
-                    onFilterChange={handleFilterChange}
-                    isRoundTrip={selectedOption === "roundTrip"}
-                  />
-                </div>
+                <div className="mb-2">{/* <FlightsFilter /> */}</div>
                 <div>
                   <h2 className="text-xl font-semibold mb-4">
                     Flight Results for {departureId} to {arrivalId}
