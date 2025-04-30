@@ -4,6 +4,7 @@ export interface City {
   name: string;
   airport_name?: string;
   country?: string;
+  code?: string;
 }
 
 export interface FlightStop {
@@ -23,8 +24,13 @@ export interface FlightDetails {
   flight_number: string;
   departure_airport?: Airport;
   arrival_airport?: Airport;
+  departure_time?: string; // SerpAPI sometimes returns it flat
+  arrival_time?: string; // ditto
   duration: string;
   stops?: FlightStop[];
+  airline_logo?: string;
+  travel_class?: string;
+  extensions?: string[];
 }
 
 export interface RouteFlight {
@@ -49,6 +55,8 @@ export interface BestFlight {
   type: "Outbound" | "Return";
   stops: number;
   travel_class: string;
+  airline_logo?: string;
+  extensions?: string[];
 }
 
 export interface MockData {
@@ -70,6 +78,19 @@ export interface SearchMetadata {
   status: string;
   created_at: string;
   id: string;
+}
+
+// This is the shape SerpAPI returns: an array of { price, flights: FlightDetails[] }
+export interface SerpApiRawBestFlight {
+  price: number;
+  flights: FlightDetails[];
+}
+
+export interface SerpApiSearchResponse {
+  search_metadata: SearchMetadata;
+  search_parameters: SearchParameters;
+  best_flights: SerpApiRawBestFlight[];
+  cities: City[];
 }
 
 export interface FlightSearchResponse {
@@ -96,4 +117,24 @@ export interface FilterState {
 export interface FlightsFilterProps {
   onFilterChange: (filters: FilterState) => void;
   isRoundTrip: boolean;
+}
+
+// Add Airport interface for the dropdown selection
+export interface AirportOption {
+  code: string;
+  name: string;
+}
+
+// Define TravelClassOption interface for travel class dropdown
+export interface TravelClassOption {
+  value: string;
+  label: string;
+}
+
+//Define SearchResultsHook return type
+export interface SearchResultsHook {
+  searchResults: FlightSearchResponse | null;
+  isLoading: boolean;
+  error: Error | null;
+  refetch: () => void;
 }

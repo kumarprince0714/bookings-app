@@ -1,162 +1,84 @@
+// src/api/useSearchResultService.ts
 import axios from "axios";
-import { FlightSearchResponse, BestFlight, MockData } from "../types/types";
+import {
+  SerpApiSearchResponse,
+  SerpApiRawBestFlight,
+  FlightSearchResponse,
+  BestFlight,
+  FlightDetails,
+  MockData,
+} from "../types/types";
 
+// Pull the key from Vite’s env
 const API_KEY = import.meta.env.VITE_SERP_API_KEY;
+if (!API_KEY) {
+  throw new Error(
+    "Missing SERP API key. Please define VITE_SERP_API_KEY in your .env"
+  );
+}
 
-// Function to fetch the db.json file
-const USE_MOCK_DATA = false; // Toggle this to switch between mock and real API
+// … rest of your mock-data logic …
 
-const fetchMockData = async (): Promise<MockData> => {
-  try {
-    // This assumes db.json is in the public folder of your React app
-    const response = await fetch("/db2.json");
-    if (!response.ok) {
-      throw new Error("Failed to fetch mock data");
-    }
-    return (await response.json()) as MockData;
-  } catch (error) {
-    console.error("Error loading mock data:", error);
-    throw error;
-  }
-};
-
-export const getSearchResults = async (
+export async function getSearchResults(
   departureId: string,
   arrivalId: string,
   outboundDate: string,
   returnDate: string | null,
-  currency: string = "USD",
-  hl: string = "en",
-  travelClass: string = ""
-): Promise<FlightSearchResponse> => {
-  const flightType = returnDate ? "1" : "2";
+  currency = "USD",
+  hl = "en",
+  travelClass = ""
+): Promise<FlightSearchResponse> {
+  // When USE_MOCK_DATA is false, build the live-API URL:
+  const params = new URLSearchParams({
+    engine: "google_flights",
+    departure_id: departureId,
+    arrival_id: arrivalId,
+    outbound_date: outboundDate,
+    type: returnDate ? "1" : "2",
+    currency,
+    hl,
+    ...(returnDate ? { return_date: returnDate } : {}),
+  });
 
-  if (USE_MOCK_DATA) {
-    try {
-      console.log("Using mock data from db.json instead of remote API");
+  // **Use `API_KEY` directly**—no `process`
+  const serpUrl = `https://serpapi.com/search.json?${params.toString()}&api_key=${API_KEY}`;
 
-      // Load the mock data from db.json
-      const mockData = await fetchMockData();
+  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
+    serpUrl
+  )}`;
 
-      // Find the route that matches departure and arrival
-      const matchingRoute = mockData.routes.find(
-        (route) =>
-          route.origin === departureId && route.destination === arrivalId
-      );
+  const resp = await axios.get<SerpApiSearchResponse>(proxyUrl);
+  const raw = resp.data;
 
-      if (!matchingRoute) {
-        return {
-          search_metadata: {
-            status: "Success",
-            created_at: new Date().toISOString(),
-            id: "mock-search-" + Math.random().toString(36).substring(2, 9),
-          },
-          search_parameters: {
-            departure_id: departureId,
-            arrival_id: arrivalId,
-            outbound_date: outboundDate,
-            return_date: returnDate || undefined,
-            currency: currency,
-            travel_class: travelClass,
-            hl: hl,
-          },
-          best_flights: [],
-          cities: mockData.cities,
-        };
-      }
+  // Flatten SerpAPI’s nested flights
+  const flatFlights = raw.best_flights.flatMap(
+    ({ price, flights }, blockIndex) => {
+      // blockIndex === 0 => Outbound, blockIndex === 1 => Return
+      const direction: "Outbound" | "Return" =
+        blockIndex === 0 ? "Outbound" : "Return";
 
-      // Map the nested flight data into a flat best_flights array.
-      let best_flights: BestFlight[] = [];
-
-      // For outbound flights
-      if (matchingRoute.flights && matchingRoute.flights.length > 0) {
-        const outboundFlights = matchingRoute.flights.flatMap((routeFlight) =>
-          routeFlight.flights.map((flight) => ({
-            airline: flight.airline,
-            flight_number: flight.flight_number,
-            departure_time: flight.departure_airport?.time || "",
-            arrival_time: flight.arrival_airport?.time || "",
-            duration: flight.duration,
-            price: routeFlight.price,
-            flightType: "Outbound" as const, // Explicitly mark as outbound
-            type: "Outbound" as const,
-            stops: flight.stops ? flight.stops.length : 0,
-            travel_class: travelClass,
-          }))
-        );
-        best_flights = [...best_flights, ...outboundFlights];
-      }
-
-      // For return flights (if roundtrip)
-      if (returnDate) {
-        // Find the reverse route (from arrival back to departure)
-        const returnRoute = mockData.routes.find(
-          (route) =>
-            route.origin === arrivalId && route.destination === departureId
-        );
-
-        if (returnRoute && returnRoute.flights) {
-          const returnFlights = returnRoute.flights.flatMap((routeFlight) =>
-            routeFlight.flights.map((flight) => ({
-              airline: flight.airline,
-              flight_number: flight.flight_number,
-              departure_time: flight.departure_airport?.time || "",
-              arrival_time: flight.arrival_airport?.time || "",
-              duration: flight.duration,
-              price: routeFlight.price,
-              flightType: "Return" as const, // Explicitly mark as return
-              type: "Return" as const,
-              stops: flight.stops ? flight.stops.length : 0,
-              travel_class: travelClass,
-            }))
-          );
-          best_flights = [...best_flights, ...returnFlights];
-        }
-      }
-
-      // Format the response to mimic SerpAPI's structure
-      const formattedResponse: FlightSearchResponse = {
-        search_metadata: {
-          status: "Success",
-          created_at: new Date().toISOString(),
-          id: "mock-search-" + Math.random().toString(36).substring(2, 9),
-        },
-        search_parameters: {
-          departure_id: departureId,
-          arrival_id: arrivalId,
-          outbound_date: outboundDate,
-          return_date: returnDate || undefined,
-          currency: currency,
-          travel_class: travelClass,
-        },
-        best_flights,
-        cities: mockData.cities,
-      };
-
-      console.log("Mock API Response:", formattedResponse);
-      return formattedResponse;
-    } catch (error) {
-      console.log("Error using mock flight data:", error);
-      throw error;
+      return flights.map((f) => ({
+        airline: f.airline || "Unknown",
+        flight_number:
+          f.flight_number || `FL-${Math.floor(Math.random() * 1000)}`,
+        departure_time: f.departure_time ?? f.departure_airport?.time ?? "N/A",
+        arrival_time: f.arrival_time ?? f.arrival_airport?.time ?? "N/A",
+        duration: f.duration || "N/A",
+        price,
+        flightType: direction,
+        type: direction,
+        stops: f.stops?.length || 0,
+        travel_class: f.travel_class || "Economy",
+        airline_logo: f.airline_logo,
+        extensions: f.extensions || ["Checked baggage for a fee"],
+      }));
     }
-  } else {
-    try {
-      // Build the complete URL with parameters
-      const serpApiUrl = `https://serpapi.com/search.json?engine=google_flights&departure_id=${departureId}&arrival_id=${arrivalId}&outbound_date=${outboundDate}&type=${flightType}${
-        returnDate ? `&return_date=${returnDate}` : ""
-      }&currency=${currency}&hl=${hl}&api_key=${API_KEY}`;
+  );
 
-      // Use the proxy with the fully formed URL
-      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
-        serpApiUrl
-      )}`;
-
-      const response = await axios.get<FlightSearchResponse>(proxyUrl);
-      console.log("API Response:", response.data);
-      return response.data;
-    } catch (error) {
-      console.log("Error fetching flight data:", error);
-      throw error as Error;
-    }
-  }
-};
+  return {
+    search_metadata: raw.search_metadata,
+    search_parameters: raw.search_parameters,
+    best_flights: flatFlights,
+    cities: raw.cities,
+  };
+}

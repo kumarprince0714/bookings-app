@@ -1,17 +1,20 @@
-//FlightSearchPage.tsx
-import React, { useState, useEffect } from "react";
+// src/pages/FlightSearchPage.tsx
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { TbArrowsExchange2 } from "react-icons/tb";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
 import dayjs from "dayjs";
-import { useSearchResults } from "../api/useSearchResults";
-import FlightsFilter from "./FlightsFilter";
-interface City {
-  code: string;
-  name: string;
-}
 
-const airports: City[] = [
+import { useSearchResults } from "../api/useSearchResults";
+import {
+  BestFlight,
+  AirportOption,
+  TravelClassOption,
+  FilterState,
+} from "../types/types";
+
+// Airport dropdown options
+const airports: AirportOption[] = [
   { code: "HKG", name: "Hong Kong" },
   { code: "PEK", name: "Beijing Capital" },
   { code: "ICN", name: "Seoul Incheon" },
@@ -30,8 +33,8 @@ const airports: City[] = [
   { code: "BOM", name: "Mumbai" },
 ];
 
-// Add travel class options
-const travelClasses = [
+// Travel-class dropdown options
+const travelClasses: TravelClassOption[] = [
   { value: "", label: "All Classes" },
   { value: "economy", label: "Economy" },
   { value: "premium_economy", label: "Premium Economy" },
@@ -40,259 +43,204 @@ const travelClasses = [
 ];
 
 const FlightSearchPage: React.FC = () => {
-  // State for flight search parameters
-  const [selectedOption, setSelectedOption] = useState("roundTrip");
+  // --- State (unchanged) ---
+  const [tripType, setTripType] = useState<"oneWay" | "roundTrip">("roundTrip");
   const [departureId, setDepartureId] = useState("");
   const [arrivalId, setArrivalId] = useState("");
   const [departDate, setDepartDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-
-  const [currency, setCurrency] = useState("USD");
-  const [language, setLanguage] = useState("en");
-  const [searchTriggered, setSearchTriggered] = useState(false);
-
+  const [currency] = useState("USD");
+  const [language] = useState("en");
   const [travelClass, setTravelClass] = useState("");
 
-  // Added state for selected flights
-  const [selectedOutboundFlight, setSelectedOutboundFlight] = useState<
+  const [searchTriggered, setSearchTriggered] = useState(false);
+  const [selectedOutboundIndex, setSelectedOutboundIndex] = useState<
     number | null
   >(null);
-  const [selectedReturnFlight, setSelectedReturnFlight] = useState<
-    number | null
-  >(null);
-
-  // Hard-code flight class for testing
-  //const travelClass = "Business";
+  const [selectedReturnIndex, setSelectedReturnIndex] = useState<number | null>(
+    null
+  );
 
   const { searchResults, isLoading, error, refetch } = useSearchResults(
     departureId,
     arrivalId,
     departDate,
-    selectedOption === "roundTrip" ? returnDate : "",
+    tripType === "roundTrip" ? returnDate : "",
     currency,
     language,
-    //travellers,
     travelClass
   );
 
   useEffect(() => {
     if (searchResults) {
-      console.log("Search Results:", searchResults);
-      // Reset selected flights when new search results arrive
-      setSelectedOutboundFlight(null);
-      setSelectedReturnFlight(null);
+      setSelectedOutboundIndex(null);
+      setSelectedReturnIndex(null);
     }
-    if (error) {
-      console.error("Search Error:", error);
-    }
-  }, [searchResults, error]);
+  }, [searchResults]);
 
-  // Handlers for input changes
-  const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(e.target.value);
-  };
-
-  const handleDepartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawDate = e.target.value;
-    setDepartDate(rawDate);
-  };
-
-  const handleReturnDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawDate = e.target.value;
-    setReturnDate(rawDate);
-  };
-
-  const handleTravelClassChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  // --- Handlers (unchanged) ---
+  const handleTripTypeChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setTripType(e.target.value as any);
+  const handleSelectDeparture = (e: ChangeEvent<HTMLSelectElement>) =>
+    setDepartureId(e.target.value);
+  const handleSelectArrival = (e: ChangeEvent<HTMLSelectElement>) =>
+    setArrivalId(e.target.value);
+  const handleDepartDateChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setDepartDate(e.target.value);
+  const handleReturnDateChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setReturnDate(e.target.value);
+  const handleTravelClassChange = (e: ChangeEvent<HTMLSelectElement>) =>
     setTravelClass(e.target.value);
+  const handleSwap = () => {
+    const tmp = departureId;
+    setDepartureId(arrivalId);
+    setArrivalId(tmp);
   };
-
   const handleSearch = () => {
     if (
-      selectedOption === "roundTrip" &&
+      tripType === "roundTrip" &&
+      returnDate &&
       dayjs(returnDate).isBefore(dayjs(departDate))
     ) {
-      alert("Return date must be after the departure date");
+      alert("Return date must be after departure date");
       return;
     }
-    console.log("Search triggered with params:", {
-      departure_id: departureId,
-      arrival_id: arrivalId,
-      outbound_date: departDate,
-      return_date: selectedOption === "roundTrip" ? returnDate : "",
-      currency,
-      hl: language,
-      travel_class: travelClass,
-    });
     setSearchTriggered(true);
     refetch();
   };
-
-  const swapLocations = () => {
-    const temp = departureId;
-    setDepartureId(arrivalId);
-    setArrivalId(temp);
-  };
-
   const handleBooking = () => {
-    // Handle the booking process with the selected flights
-    if (selectedOption === "oneWay" && selectedOutboundFlight !== null) {
-      console.log("Booking one-way flight:", selectedOutboundFlight);
-      // Implement booking logic
-      alert(`Booking flight ${selectedOutboundFlight}`);
-    } else if (
-      selectedOption === "roundTrip" &&
-      selectedOutboundFlight !== null &&
-      selectedReturnFlight !== null
-    ) {
-      console.log("Booking round-trip flights:", {
-        outbound: selectedOutboundFlight,
-        return: selectedReturnFlight,
-      });
-      // Implement booking logic
-      alert(
-        `Booking outbound flight ${selectedOutboundFlight} and return flight ${selectedReturnFlight}`
-      );
+    if (tripType === "oneWay") {
+      if (selectedOutboundIndex === null)
+        return alert("Select an outbound flight");
+      alert(`Booking one-way flight #${selectedOutboundIndex + 1}`);
     } else {
-      alert("Please select flights for your journey");
+      if (selectedOutboundIndex === null || selectedReturnIndex === null)
+        return alert("Select both outbound and return flights");
+      alert(
+        `Booking outbound #${selectedOutboundIndex + 1} and return #${
+          selectedReturnIndex + 1
+        }`
+      );
     }
   };
 
-  // Helper function to render a list of flights with radio buttons
-  const renderFlightList = (flights: any[], isOutbound: boolean) => {
-    return flights.map((route: any, index: number) => {
-      // Get the first flight from the nested flights array if available
-      const flightDetail = route.flights && route.flights[0];
+  // --- Rendering helpers (unchanged) ---
+  const renderFlightCard = (
+    flight: BestFlight,
+    index: number,
+    isOutbound: boolean
+  ) => {
+    const isSelected = isOutbound
+      ? selectedOutboundIndex === index
+      : selectedReturnIndex === index;
+    const onSelect = () =>
+      isOutbound
+        ? setSelectedOutboundIndex(index)
+        : setSelectedReturnIndex(index);
 
-      // Determine if this flight is selected
-      const isSelected = isOutbound
-        ? selectedOutboundFlight === index
-        : selectedReturnFlight === index;
-
-      return (
-        <div
-          key={index}
-          className={`div2 lg:py-4 rounded shadow-lg mb-4 w-[80vw] md:w-auto ${
-            isSelected ? "bg-blue-100 border-2 border-blue-300" : "bg-gray-100"
-          }`}
-        >
-          <div className="flex flex-col">
-            <div className="div1 flex flex-col lg:flex-row px-1">
-              {/* Radio button for selection */}
-              <div className="flex justify-end">
-                <input
-                  type="radio"
-                  name={isOutbound ? "outboundFlight" : "returnFlight"}
-                  checked={isSelected}
-                  onChange={() => {
-                    if (isOutbound) {
-                      setSelectedOutboundFlight(index);
-                    } else {
-                      setSelectedReturnFlight(index);
-                    }
-                  }}
-                  className="radio1 h-5 w-5 cursor-pointer flex  m-2"
-                />
-              </div>
-
-              <div className="flex mr-2">
-                {flightDetail?.airline_logo ? (
-                  <img
-                    src={flightDetail.airline_logo}
-                    alt={flightDetail.airline}
-                    title={flightDetail.airline}
-                    className="h-10 w-10 mx-2"
-                  />
-                ) : null}
-              </div>
-
-              <div className="flex flex-col items-start lg:mx-auto">
-                <p>
-                  <strong>Airline:</strong>{" "}
-                  {flightDetail?.airline || route.airline || "N/A"}
-                </p>
-                <p>
-                  <strong>Flight No:</strong>{" "}
-                  {flightDetail?.flight_number || route.flight_number || "N/A"}
-                </p>
-              </div>
-              <div className="flex flex-col items-start lg:mx-auto">
-                <p>
-                  <strong>Departure:</strong>{" "}
-                  {flightDetail?.departure_airport?.time ||
-                    route.departure_time ||
-                    "N/A"}
-                </p>
-                <p>
-                  <strong>Arrival:</strong>{" "}
-                  {flightDetail?.arrival_airport?.time ||
-                    route.arrival_time ||
-                    "N/A"}
-                </p>
-                <p>
-                  <strong>Duration:</strong>{" "}
-                  {flightDetail?.duration || route.duration
-                    ? `${flightDetail?.duration || route.duration} minutes`
-                    : "N/A"}
-                </p>
-              </div>
-              <div className="flex flex-col items-start lg:mx-auto">
-                <p>
-                  <strong>Price:</strong>{" "}
-                  {route.price !== undefined ? `$${route.price}` : "N/A"}
-                </p>
-                <p>
-                  <strong>Type:</strong>{" "}
-                  {route.type || route.flightType || "N/A"}
-                </p>
-                <p>
-                  <strong>Class:</strong> {flightDetail?.travel_class || "N/A"}
-                </p>
-              </div>
-              <div className=""></div>
+    return (
+      <div
+        key={index}
+        className={`div2 lg:py-4 rounded shadow-lg mb-4 w-[80vw] md:w-auto ${
+          isSelected ? "bg-blue-100 border-2 border-blue-300" : "bg-gray-100"
+        }`}
+      >
+        <div className="flex flex-col">
+          <div className="div1 flex flex-col lg:flex-row px-1">
+            <div className="flex justify-end">
+              <input
+                type="radio"
+                name={isOutbound ? "outboundFlight" : "returnFlight"}
+                checked={isSelected}
+                onChange={onSelect}
+                className="radio1 h-5 w-5 cursor-pointer flex m-2"
+              />
             </div>
-            <div className="mt-2 flex flex-col lg:flex-row justify-between p-2">
-              <p className="w-full text-left">
-                <strong>Additional info & amenities:</strong>{" "}
-                {flightDetail?.extensions?.join(", ") || "N/A"}
+
+            <div className="flex mr-2">
+              {flight.airline_logo && (
+                <img
+                  src={flight.airline_logo}
+                  alt={flight.airline}
+                  className="h-10 w-10 mx-2"
+                />
+              )}
+            </div>
+
+            <div className="flex flex-col items-start lg:mx-auto">
+              <p>
+                <strong>Airline:</strong> {flight.airline}
+              </p>
+              <p>
+                <strong>Flight No:</strong> {flight.flight_number}
+              </p>
+            </div>
+
+            <div className="flex flex-col items-start lg:mx-auto">
+              <p>
+                <strong>Departure:</strong> {flight.departure_time}
+              </p>
+              <p>
+                <strong>Arrival:</strong> {flight.arrival_time}
+              </p>
+              <p>
+                <strong>Duration:</strong> {flight.duration}
+              </p>
+            </div>
+
+            <div className="flex flex-col items-start lg:mx-auto">
+              <p>
+                <strong>Price:</strong> ${flight.price}
+              </p>
+              <p>
+                <strong>Type:</strong> {flight.type}
+              </p>
+              <p>
+                <strong>Class:</strong> {flight.travel_class}
               </p>
             </div>
           </div>
+
+          <div className="mt-2 flex flex-col lg:flex-row justify-between p-2">
+            <p className="w-full text-left">
+              <strong>Additional info & amenities:</strong>{" "}
+              {flight.extensions.join(", ")}
+            </p>
+          </div>
         </div>
-      );
-    });
+      </div>
+    );
   };
 
-  // Render flight search results based on the API response
   const renderFlights = () => {
-    if (!searchResults) return null;
+    if (!searchTriggered) return null;
+    if (isLoading)
+      return <p className="text-center">Loading search results...</p>;
+    if (error)
+      return (
+        <div className="text-red-500 p-4 border border-red-300 rounded bg-red-50">
+          <h3 className="font-bold">Error loading search results:</h3>
+          <p>{error.message}</p>
+        </div>
+      );
+    if (!searchResults || searchResults.best_flights.length === 0) {
+      return (
+        <div className="mt-4">
+          <p>No flights found for your search criteria.</p>
+        </div>
+      );
+    }
 
-    if (searchResults.best_flights && searchResults.best_flights.length > 0) {
-      // For round trips, we need to separate outbound and return flights
-      if (selectedOption === "roundTrip") {
-        // Find outbound and return flights based on dates or flight type
-        const outboundFlights = searchResults.best_flights.filter(
-          (route: any) =>
-            route.type === "Outbound" || route.flightType === "Outbound"
-        );
+    const outboundFlights = searchResults.best_flights.filter(
+      (f) => f.type === "Outbound"
+    );
+    const returnFlights = searchResults.best_flights.filter(
+      (f) => f.type === "Return"
+    );
 
-        const returnFlights = searchResults.best_flights.filter(
-          (route: any) =>
-            route.type === "Return" || route.flightType === "Return"
-        );
-
-        // If the API doesn't specifically label flights as outbound/return,
-        // we can assume the first half of flights are outbound and second half are return
-        const halfIndex = Math.ceil(searchResults.best_flights.length / 2);
-        const defaultOutbound =
-          outboundFlights.length > 0
-            ? outboundFlights
-            : searchResults.best_flights.slice(0, halfIndex);
-        const defaultReturn =
-          returnFlights.length > 0
-            ? returnFlights
-            : searchResults.best_flights.slice(halfIndex);
-
-        return (
+    return (
+      <>
+        {outboundFlights.length > 0 && (
           <>
             <h3 className="text-lg font-medium mb-3">
               Outbound Flights ({dayjs(departDate).format("MMM D, YYYY")})
@@ -301,8 +249,12 @@ const FlightSearchPage: React.FC = () => {
                   travelClasses.find((c) => c.value === travelClass)?.label
                 }`}
             </h3>
-            {renderFlightList(defaultOutbound, true)}
+            {outboundFlights.map((f, i) => renderFlightCard(f, i, true))}
+          </>
+        )}
 
+        {tripType === "roundTrip" && (
+          <>
             <h3 className="text-lg font-medium my-4">
               Return Flights ({dayjs(returnDate).format("MMM D, YYYY")})
               {travelClass &&
@@ -310,75 +262,51 @@ const FlightSearchPage: React.FC = () => {
                   travelClasses.find((c) => c.value === travelClass)?.label
                 }`}
             </h3>
-            {renderFlightList(defaultReturn, false)}
-
-            {/* Booking button for round trip */}
-            <div className="mt-6 flex justify-center">
-              <button
-                onClick={handleBooking}
-                disabled={
-                  selectedOutboundFlight === null ||
-                  selectedReturnFlight === null
-                }
-                className={`p-3 flex items-center justify-center rounded text-white ${
-                  selectedOutboundFlight !== null &&
-                  selectedReturnFlight !== null
-                    ? "bg-blue-500 hover:bg-blue-600"
-                    : "bg-gray-400 cursor-not-allowed"
-                }`}
-              >
-                <GiCommercialAirplane className="mr-2" size={24} />
-                Book Selected Flights
-              </button>
-            </div>
+            {returnFlights.map((f, i) => renderFlightCard(f, i, false))}
           </>
-        );
-      } else {
-        // For one-way trips, render all flights
-        return (
-          <>
-            {renderFlightList(searchResults.best_flights, true)}
+        )}
 
-            {/* Booking button for one-way */}
-            <div className="mt-6 flex justify-center">
-              <button
-                onClick={handleBooking}
-                disabled={selectedOutboundFlight === null}
-                className={`p-3 flex items-center justify-center rounded text-white ${
-                  selectedOutboundFlight !== null
-                    ? "bg-blue-500 hover:bg-blue-600"
-                    : "bg-gray-400 cursor-not-allowed"
-                }`}
-              >
-                <GiCommercialAirplane className="mr-2" size={24} />
-                Book Selected Flight
-              </button>
-            </div>
-          </>
-        );
-      }
-    } else {
-      return (
-        <div className="mt-4">
-          <p>No flights found for your search criteria.</p>
+        <div className="mt-6 flex justify-center">
+          <button
+            onClick={handleBooking}
+            disabled={
+              tripType === "oneWay"
+                ? selectedOutboundIndex === null
+                : selectedOutboundIndex === null || selectedReturnIndex === null
+            }
+            className={`p-3 flex items-center justify-center rounded text-white ${
+              tripType === "oneWay"
+                ? selectedOutboundIndex !== null
+                  ? "bg-blue-500 hover:bg-blue-600"
+                  : "bg-gray-400 cursor-not-allowed"
+                : selectedOutboundIndex !== null && selectedReturnIndex !== null
+                ? "bg-blue-500 hover:bg-blue-600"
+                : "bg-gray-400 cursor-not-allowed"
+            }`}
+          >
+            <GiCommercialAirplane className="mr-2" size={24} />
+            {tripType === "oneWay"
+              ? "Book Selected Flight"
+              : "Book Selected Flights"}
+          </button>
         </div>
-      );
-    }
+      </>
+    );
   };
 
   return (
-    <div className="h-auto mt-[5vh] flex flex-col items-center justify-center ">
-      <div className="w-fit  md:border rounded border-black flex flex-col items-start md:items-center p-4 min-h-40 h-auto mt-10 mx-auto">
-        {/* Flight Option Selection */}
+    <div className="h-auto mt-[5vh] flex flex-col items-center justify-center">
+      <div className="w-fit md:border rounded border-black flex flex-col items-start md:items-center p-4 min-h-40 h-auto mt-10 mx-auto">
+        {/* --- Flight Option --- */}
         <div className="flex items-center flex-col">
-          <div className="row1 mb-4 flex items-start ">
+          <div className="row1 mb-4 flex items-start">
             <label className="mr-4">
               <input
                 type="radio"
                 name="flightOption"
                 value="oneWay"
-                checked={selectedOption === "oneWay"}
-                onChange={handleOptionChange}
+                checked={tripType === "oneWay"}
+                onChange={handleTripTypeChange}
                 className="mr-2"
               />
               One Way
@@ -388,23 +316,22 @@ const FlightSearchPage: React.FC = () => {
                 type="radio"
                 name="flightOption"
                 value="roundTrip"
-                checked={selectedOption === "roundTrip"}
-                onChange={handleOptionChange}
+                checked={tripType === "roundTrip"}
+                onChange={handleTripTypeChange}
                 className="mr-2"
               />
               Round Trip
             </label>
           </div>
 
-          {/* Search Fields */}
-          <div className="row2 my-4 flex-col flex lg:flex-row flex-nowrap gap-4 ">
-            {/* Departure Airport */}
+          {/* --- Search Fields --- */}
+          <div className="row2 my-4 flex-col flex lg:flex-row gap-4">
             <div className="flex w-auto">
-              <div className="flex items-center border border-gray-300 p-2 w-[35vw] md:w-[25vw] lg:w-auto ">
+              <div className="flex items-center border border-gray-300 p-2 w-[35vw] md:w-[25vw] lg:w-auto">
                 <select
-                  className="bg-transparent outline-none w-auto text-sm"
                   value={departureId}
-                  onChange={(e) => setDepartureId(e.target.value)}
+                  onChange={handleSelectDeparture}
+                  className="bg-transparent outline-none w-auto text-sm"
                 >
                   <option value="">From (Select Airport)</option>
                   {airports.map((city) => (
@@ -415,20 +342,18 @@ const FlightSearchPage: React.FC = () => {
                 </select>
               </div>
 
-              {/* Swap Button */}
               <button
-                onClick={swapLocations}
+                onClick={handleSwap}
                 className="p-1 bg-gray-200 rounded flex items-center w-7 lg:w-auto mx-1"
               >
                 <TbArrowsExchange2 size={20} />
               </button>
 
-              {/* Arrival Airport */}
               <div className="flex items-center border border-gray-300 p-2 w-[35vw] md:w-[25vw] lg:w-auto">
                 <select
-                  className="bg-transparent outline-none w-auto text-sm"
                   value={arrivalId}
-                  onChange={(e) => setArrivalId(e.target.value)}
+                  onChange={handleSelectArrival}
+                  className="bg-transparent outline-none w-auto text-sm"
                 >
                   <option value="">To (Select Airport)</option>
                   {airports.map((city) => (
@@ -447,22 +372,22 @@ const FlightSearchPage: React.FC = () => {
               <input
                 type="date"
                 className="outline-none"
-                placeholder="Depart On "
+                value={departDate}
                 onChange={handleDepartDateChange}
                 required
                 min={dayjs().format("YYYY-MM-DD")}
               />
             </div>
-            {selectedOption === "roundTrip" && (
+
+            {tripType === "roundTrip" && (
               <div className="border border-gray-300 p-2">
                 <label className="mb-1 text-sm font-medium mr-2">
                   Return On:
                 </label>
-
                 <input
                   type="date"
                   className="outline-none"
-                  placeholder="Return On"
+                  value={returnDate}
                   onChange={handleReturnDateChange}
                   required
                   min={departDate || dayjs().format("YYYY-MM-DD")}
@@ -470,71 +395,42 @@ const FlightSearchPage: React.FC = () => {
               </div>
             )}
 
-            {/* Add travel class filter */}
             <div className="border border-gray-300 p-2">
               <select
-                className="bg-transparent outline-none text-sm"
                 value={travelClass}
                 onChange={handleTravelClassChange}
+                className="bg-transparent outline-none text-sm"
               >
-                {travelClasses.map((classOption) => (
-                  <option key={classOption.value} value={classOption.value}>
-                    {classOption.label}
+                {travelClasses.map((tc) => (
+                  <option key={tc.value} value={tc.value}>
+                    {tc.label}
                   </option>
                 ))}
               </select>
             </div>
-            <div className="">
+
+            <div>
               <button
                 onClick={handleSearch}
-                className="p-2 bg-blue-500 text-white flex items-center justify-center rounded w-full lg:w-[6vw] h-full"
+                className="p-2 bg-blue-500 text-white flex items-center justify-center rounded w-full lg:w-[6vw]"
                 disabled={
                   isLoading ||
                   !departureId ||
                   !arrivalId ||
                   !departDate ||
-                  (selectedOption === "roundTrip" && !returnDate)
+                  (tripType === "roundTrip" && !returnDate)
                 }
               >
-                <IoSearch className="mr-1" size={20} />{" "}
+                <IoSearch className="mr-1" size={20} />
                 {isLoading ? "Searching..." : "Search"}
               </button>
             </div>
           </div>
         </div>
-        {/* Results Section */}
+
+        {/* --- Results Section --- */}
         {searchTriggered && (
-          <div className="mt-8 w-full">
-            {isLoading && (
-              <p className="text-center">Loading search results...</p>
-            )}
-            {error && (
-              <div className="text-red-500 p-4 border border-red-300 rounded bg-red-50">
-                <h3 className="font-bold">Error loading search results:</h3>
-                <p>{(error as Error).message}</p>
-              </div>
-            )}
-            {searchResults && !isLoading && (
-              <div className="mt-4">
-                <div className="mb-2">{/* <FlightsFilter /> */}</div>
-                <div>
-                  <h2 className="text-xl font-semibold mb-4">
-                    Flight Results for {departureId} to {arrivalId}
-                    {selectedOption === "oneWay"
-                      ? ` on ${dayjs(departDate).format("MMM D, YYYY")}`
-                      : ` (${dayjs(departDate).format("MMM D, YYYY")} - ${dayjs(
-                          returnDate
-                        ).format("MMM D, YYYY")})`}
-                  </h2>
-                  {renderFlights() || (
-                    <p className="text-center p-4 border rounded">
-                      No flights found for your search criteria.
-                    </p>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
+          <div className="mt-8 w-full">{renderFlights()}</div>
         )}
       </div>
     </div>
