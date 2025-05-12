@@ -1,4 +1,4 @@
-// src/api/useSearchResultService.ts
+// src/api/useSearchResultsService.ts
 import axios from "axios";
 import {
   SerpApiSearchResponse,
@@ -9,15 +9,13 @@ import {
   MockData,
 } from "../types/types";
 
-// Pull the key from Vite’s env
+// Pull the key from Vite's env
 const API_KEY = import.meta.env.VITE_SERP_API_KEY;
 if (!API_KEY) {
   throw new Error(
     "Missing SERP API key. Please define VITE_SERP_API_KEY in your .env"
   );
 }
-
-// … rest of your mock-data logic …
 
 export async function getSearchResults(
   departureId: string,
@@ -50,7 +48,7 @@ export async function getSearchResults(
   const resp = await axios.get<SerpApiSearchResponse>(proxyUrl);
   const raw = resp.data;
 
-  // Flatten SerpAPI’s nested flights
+  // Flatten SerpAPI's nested flights
   const flatFlights = raw.best_flights.flatMap(
     ({ price, flights }, blockIndex) => {
       // blockIndex === 0 => Outbound, blockIndex === 1 => Return
