@@ -6,12 +6,7 @@ import { IoSearch } from "react-icons/io5";
 import dayjs from "dayjs";
 
 import { useSearchResults } from "../api/useSearchResults";
-import {
-  BestFlight,
-  AirportOption,
-  TravelClassOption,
-  //FilterState,
-} from "../types/types";
+import { BestFlight, AirportOption, TravelClassOption } from "../types/types";
 
 import FlightsFilter, { FilterState } from "./FlightsFilter";
 
@@ -158,7 +153,7 @@ const FlightSearchPage: React.FC = () => {
 
   // --- Handlers (unchanged) ---
   const handleTripTypeChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setTripType(e.target.value as any);
+    setTripType(e.target.value as "oneWay" | "roundTrip");
   const handleSelectDeparture = (e: ChangeEvent<HTMLSelectElement>) =>
     setDepartureId(e.target.value);
   const handleSelectArrival = (e: ChangeEvent<HTMLSelectElement>) =>
@@ -282,7 +277,7 @@ const FlightSearchPage: React.FC = () => {
           <div className="mt-2 flex flex-col lg:flex-row justify-between p-2">
             <p className="w-full text-left">
               <strong>Additional info & amenities:</strong>{" "}
-              {flight.extensions.join(", ")}
+              {(flight.extensions || []).join(", ")}
             </p>
           </div>
         </div>

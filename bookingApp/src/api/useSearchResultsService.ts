@@ -1,13 +1,6 @@
 // src/api/useSearchResultsService.ts
 import axios from "axios";
-import {
-  SerpApiSearchResponse,
-  SerpApiRawBestFlight,
-  FlightSearchResponse,
-  BestFlight,
-  FlightDetails,
-  MockData,
-} from "../types/types";
+import { SerpApiSearchResponse, FlightSearchResponse } from "../types/types";
 
 // Pull the key from Vite's env
 const API_KEY = import.meta.env.VITE_SERP_API_KEY;
