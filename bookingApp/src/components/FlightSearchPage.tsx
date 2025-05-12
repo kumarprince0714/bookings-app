@@ -1,5 +1,5 @@
 // src/pages/FlightSearchPage.tsx
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, useCallback } from "react";
 import { TbArrowsExchange2 } from "react-icons/tb";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
@@ -10,8 +10,67 @@ import {
   BestFlight,
   AirportOption,
   TravelClassOption,
-  FilterState,
+  //FilterState,
 } from "../types/types";
+
+import FlightsFilter, { FilterState } from "./FlightsFilter";
+
+type TimeCategory = "earlyMorning" | "morning" | "afternoon" | "night" | "";
+
+/** Parse any time string into one of our 4 buckets */
+function getTimeCategory(timeStr: string): TimeCategory {
+  if (!timeStr) return "";
+  const s = timeStr.trim();
+  let hour: number;
+
+  // 12h format?
+  const ampm = s.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+  if (ampm) {
+    hour = parseInt(ampm[1], 10);
+    const period = ampm[3].toUpperCase();
+    if (period === "PM" && hour < 12) hour += 12;
+    if (period === "AM" && hour === 12) hour = 0;
+  } else {
+    // 24h like "14:45" or "14.45"
+    const m24 = s.match(/(\d{1,2})[:.](\d{2})/);
+    if (!m24) {
+      console.warn(`Invalid time format: "${timeStr}"`);
+      return "";
+    }
+    hour = parseInt(m24[1], 10);
+  }
+
+  if (hour < 6) return "earlyMorning";
+  if (hour < 12) return "morning";
+  if (hour < 18) return "afternoon";
+  return "night";
+}
+
+/** Filter a list of flights by the 4 time-of-day flags */
+function filterFlightsByTime(
+  flights: BestFlight[],
+  timeFilters: {
+    earlyMorning: boolean;
+    morning: boolean;
+    afternoon: boolean;
+    night: boolean;
+  }
+): BestFlight[] {
+  // if none selected, don't filter
+  if (!Object.values(timeFilters).some(Boolean)) {
+    return flights;
+  }
+
+  return flights.filter((f) => {
+    const cat = getTimeCategory(f.departure_time);
+    return (
+      (cat === "earlyMorning" && timeFilters.earlyMorning) ||
+      (cat === "morning" && timeFilters.morning) ||
+      (cat === "afternoon" && timeFilters.afternoon) ||
+      (cat === "night" && timeFilters.night)
+    );
+  });
+}
 
 // Airport dropdown options
 const airports: AirportOption[] = [
@@ -53,6 +112,9 @@ const FlightSearchPage: React.FC = () => {
   const [language] = useState("en");
   const [travelClass, setTravelClass] = useState("");
 
+  //Filter state
+  const [filters, setFilters] = useState<FilterState | null>(null);
+
   const [searchTriggered, setSearchTriggered] = useState(false);
   const [selectedOutboundIndex, setSelectedOutboundIndex] = useState<
     number | null
@@ -71,12 +133,28 @@ const FlightSearchPage: React.FC = () => {
     travelClass
   );
 
+  //Resets selections when new results come in
   useEffect(() => {
     if (searchResults) {
       setSelectedOutboundIndex(null);
       setSelectedReturnIndex(null);
     }
   }, [searchResults]);
+
+  //Price filter
+
+  const matchesPriceFilter = useCallback(
+    (f: BestFlight) => {
+      if (!filters) return true;
+      return (
+        f.price <=
+        (f.type === "Outbound"
+          ? filters.departPriceMax
+          : filters.returnPriceMax)
+      );
+    },
+    [filters]
+  );
 
   // --- Handlers (unchanged) ---
   const handleTripTypeChange = (e: ChangeEvent<HTMLInputElement>) =>
@@ -231,12 +309,43 @@ const FlightSearchPage: React.FC = () => {
       );
     }
 
-    const outboundFlights = searchResults.best_flights.filter(
+    // split raw outbound/return
+    const outboundRaw = searchResults.best_flights.filter(
       (f) => f.type === "Outbound"
     );
-    const returnFlights = searchResults.best_flights.filter(
+    const returnRaw = searchResults.best_flights.filter(
       (f) => f.type === "Return"
     );
+
+    // time-filter objects
+    const outboundTimeFilters = filters
+      ? {
+          earlyMorning: filters.outboundEarlyMorning,
+          morning: filters.outboundMorning,
+          afternoon: filters.outboundAfternoon,
+          night: filters.outboundNight,
+        }
+      : { earlyMorning: false, morning: false, afternoon: false, night: false };
+
+    const inboundTimeFilters = filters
+      ? {
+          earlyMorning: filters.inboundEarlyMorning,
+          morning: filters.inboundMorning,
+          afternoon: filters.inboundAfternoon,
+          night: filters.inboundNight,
+        }
+      : { earlyMorning: false, morning: false, afternoon: false, night: false };
+
+    // apply filters before mapping
+    const outboundFlights = filterFlightsByTime(
+      outboundRaw,
+      outboundTimeFilters
+    ).filter((f) => matchesPriceFilter(f));
+
+    const returnFlights = filterFlightsByTime(
+      returnRaw,
+      inboundTimeFilters
+    ).filter((f) => matchesPriceFilter(f));
 
     return (
       <>
@@ -430,7 +539,13 @@ const FlightSearchPage: React.FC = () => {
 
         {/* --- Results Section --- */}
         {searchTriggered && (
-          <div className="mt-8 w-full">{renderFlights()}</div>
+          <div className="mt-8 w-full space-y-4">
+            <FlightsFilter
+              isRoundTrip={tripType === "roundTrip"}
+              onFilterChange={setFilters}
+            />
+            <div>{renderFlights()}</div>
+          </div>
         )}
       </div>
     </div>
